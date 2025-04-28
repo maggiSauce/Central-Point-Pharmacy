@@ -1,10 +1,3 @@
-; Access the arguments; the only arguement should be a json file that we will have to parse in this program
-pdfJson := A_Args[1]
-; must convert into a dictionary. after we have done that we can then access all key/value pairs related
-; to the pdf fields.
-; final step is to write the ahk script that will interact with kroll
-; look inside KrollAllHotkeys.ahk to see the syntax
-
 #include JSON.ahk
 
 ;programPath = C:\Users\kroll\Documents\pythonStuff\PDFScrape.py
@@ -64,4 +57,38 @@ parseJSON() {
         MsgBox, No key
     }
     return
+}
+
+fillIndividualDrug() {
+    Send, {F12}     ; create new Rx
+    Sleep, 1000
+    
+    ; active field is "Drug Search"
+    Send, % *DIN*   ; DIN
+    Send, {Tab}
+    Send, 14127     ; doc primary key
+    Send, {Enter}
+    Sleep, 1000
+
+    ; Display Quantity
+    Send, % *DISPQTY*
+    Sleep, 1000
+
+    ; make Rx unfilled
+    Send, {Alt}
+    Send, r
+    Send, {Enter}
+    Sleep, 1000
+
+    ; Days
+    Send, % *DAYS*
+    Sleep, 500
+
+    Send, {F12}     ; send final fill request
+    Sleep, 500
+
+    Send, {Enter}
+    Sleep, 500
+    Send, {Enter}
+    Sleep, 3000
 }
