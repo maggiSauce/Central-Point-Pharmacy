@@ -24,13 +24,13 @@
 
     "Twinrix; Trad": ["TWINRIX", "1", "28", "2", "1"],
     "Twinrix: Rapid": ["INJECT 1ML INTRAMUSCULARLY (0,7,21 DAYS 12 MONTHS)", "1", "7", "3", "1"],
-    "Imovax Polio": [1959042	POLIO	1	28	0	1
-    "Shingrix": null,	2468425	SHINGRIX	1	28	1	1
-"Twinrix; Alt": null,		INJECT 1ML INTRAMUSCULARLY (0, 6-12 MONTHS)	1	28	1	1
-"Ixiaro; Accelerated": null,		IXIAROA	1	7	2	1
-"Havrix Jr": null,	2231056	HAVRIXJR	1	28	1	1
-"Engerix B Jr": null,	2487020	ENGERIX	1	28	2	1
-"Twinrix Jr": null,	2237548	TWINJR	1	28	2	1
-"MMR": null,	466085	MMR	1	28	1	10
-"Varivax"	2246081	VAR	1	28	1	1
+    "Imovax Polio": ["1959042", "POLIO", "1", "28", "0", "1"],
+    "Shingrix":["2468425", "SHINGRIX", "1", "28", "1", "1"],
+    "Twinrix; Alt": ["INJECT 1ML INTRAMUSCULARLY (0, 6-12 MONTHS)", "1", "28", "1", "1"],
+    "Ixiaro; Accelerated": ["IXIAROA", "1", "7", "2", "1"],
+    "Havrix Jr": ["2231056", "HAVRIXJR", "1", "28", "1", "1"],
+    "Engerix B Jr": ["2487020", "ENGERIX", "1", "28", "2", "1"],
+    "Twinrix Jr": ["2237548", "TWINJR", "1", "28", "2", "1"],
+    "MMR": ["466085", "MMR", "1", "28", "1", "10"],
+    "Varivax": ["2246081", "VAR", "1", "28", "1", "1"]
 }
