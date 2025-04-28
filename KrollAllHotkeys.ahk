@@ -117,7 +117,7 @@ fillWithRepeats(DINArr, DspQtyArr, RepeatsArr, DaysArr) {
 			Send, {Enter}
 			Sleep, 500
 			Send, {Enter}
-	;		Sleep, 500
+			Sleep, 1000
 		}
 
 		; active field should be "Disp Qty"
@@ -148,11 +148,11 @@ fillWithRepeats(DINArr, DspQtyArr, RepeatsArr, DaysArr) {
 		Sleep, 500
 		
 		Send, {Enter}
-		Sleep, 500
+		;Sleep, 500
 		Send, {Enter}
-		Sleep, 500
+		;Sleep, 500
 		Send, {Enter}
-		Sleep, 500
+		;Sleep, 500
 		Send, {Enter}
 		Sleep, 500
 		Send, {Enter}
