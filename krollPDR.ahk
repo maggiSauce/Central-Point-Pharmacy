@@ -5,8 +5,11 @@ pdfJson := A_Args[1]
 ; final step is to write the ahk script that will interact with kroll
 ; look inside KrollAllHotkeys.ahk to see the syntax
 
+#include JSON.ahk
+
 ;programPath = C:\Users\kroll\Documents\pythonStuff\PDFScrape.py
 programPath = C:\Users\small\Central-Point-Pharmacy\PDFScrape.py
+JSONPath = C:\Users\small\Central-Point-Pharmacy\TempPDFs\tempFields.json
 
 ^+q::
 InputBox, filepath, Input the pdf file
@@ -15,12 +18,14 @@ runPython(programPath, filepath)
 return
 
 runPython(programPath, filepath) {
-    ;MsgBox, hello
     MsgBox, python "%programPath%" "%filepath%"
     Run, %ComSpec% /k python "%programPath%" "%filepath%"
     return
 }
 
 parseJSON() {
-    
+    FileRead, jsonContent, %JSONPath%   # load the file
+    data := JSON.Load(jsonContent)      # parse json
+    MsgBox, "data.Check Box6"
+    return
 }
