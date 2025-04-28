@@ -3,7 +3,8 @@ import subprocess
 import sys
 import json
 
-JSONPATH = r"C:\Users\kroll\Documents\TempPDFs\tempFields.json"
+# JSONPATH = r"C:\Users\kroll\Documents\TempPDFs\tempFields.json"
+JSONPATH = f"C:\Users\small\Central-Point-Pharmacy\TempPDFs\tempFields.json"
 
 def main():
     log = open("pythonLog.txt", 'w')
@@ -45,5 +46,6 @@ def main():
         outfile.write(jsonObject)
 
     log.write("completed with no errors")
+    log.close()
     print("completed with no errors")
 main()
