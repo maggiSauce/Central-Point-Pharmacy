@@ -4,7 +4,7 @@ import sys
 import json
 
 # JSONPATH = r"C:\Users\kroll\Documents\TempPDFs\tempFields.json"
-JSONPATH = f"C:\Users\small\Central-Point-Pharmacy\TempPDFs\tempFields.json"
+JSONPATH = r"C:\Users\small\Central-Point-Pharmacy\TempPDFs\tempFields.json"
 
 def main():
     log = open("pythonLog.txt", 'w')
