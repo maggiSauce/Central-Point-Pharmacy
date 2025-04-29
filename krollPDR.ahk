@@ -3,6 +3,9 @@
 ;programPath = C:\Users\kroll\Documents\pythonStuff\PDFScrape.py
 programPath = C:\Users\small\Central-Point-Pharmacy\PDFScrape.py
 JSONPath = C:\Users\small\Central-Point-Pharmacy\TempPDFs\tempFields.json
+JSONPath = C:\Users\kroll\Documents\TempPDFs\tempFields.json
+medDataPath = C:\Users\small\Central-Point-Pharmacy\TempPDFs\medications_data.json
+
 
 ^+q::
 InputBox, filepath, Input the pdf file
@@ -10,8 +13,8 @@ MsgBox, The filepath is %filepath%
 if (!runPython(programPath, filepath)) {    ; exit hotkey execution if runPython returns False
     return
 }
-Sleep, 500
-parseJSON()
+tempData = parseJSON(JSONPath)     ; load tempFields.Json
+medData = parseJSON(medDataPath)    ; load medications_data.json
 return
 
 runPython(programPath, filepath) {
@@ -26,26 +29,25 @@ runPython(programPath, filepath) {
     return true
 }
 
-parseJSON() {
-    global JSONPath
-    MsgBox, % JSONPath
+parseJSON(pathToJson) {
+    MsgBox, % pathToJson
     
      ; Wait until the file exists and is not empty
     Loop {
-        if (FileExist(JSONPath)) {
-            FileGetSize, fileSize, %JSONPath%
+        if (FileExist(pathToJson)) {
+            FileGetSize, fileSize, %pathToJson%
             if (fileSize > 0)
                 break
         }
         Sleep, 100  ; wait 100 milliseconds before checking again
     }
 
-    if !FileExist(JSONPath) {
-        MsgBox % "Error: JSON file does not exist at " JSONPath
+    if !FileExist(pathToJson) {
+        MsgBox % "Error: JSON file does not exist at " pathToJson
         return
     }
 
-    FileRead, jsonContent, %JSONPath%   ; load the file
+    FileRead, jsonContent, %pathToJson%   ; load the file
     if (jsonContent = "") {
         MsgBox % "Error: JSON file is empty."
         return
@@ -58,13 +60,7 @@ parseJSON() {
         MsgBox % "Failed to load JSON."
         return
     }
-
-    if (data.HasKey("Check Box6")) {
-        MsgBox, % "data: " data["Check Box6"]
-    } else {
-        MsgBox, No key
-    }
-    return
+    return data
 }
 
 fillIndividualDrug() {
