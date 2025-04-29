@@ -231,6 +231,7 @@ handleMalaronePed(key, data) {
     sigTemplate := ""
 
     dspQty := data["Total Malaria tabs Malarone"]   ; get the dspqty for malarone adult
+    MsgBox, % dspQty
     if (data["3T QD - MP"] == "/Yes") {
         days := dspQty / 3
         sigNum := 3
@@ -252,9 +253,9 @@ handleMalaronePed(key, data) {
     }
 
     sigTemplate := % "TAKE " sigNum " TABLET ONCE DAILY (WITH FOOD), START 1 DAY PRIOR TO EXPOSURE, DURING STAY IN REGION AND FOR 1 WEEK AFTER LEAVING ENDEMIC AREA"
-    Send, sigTemplate
+    Send, % sigTemplate
     Send, {Tab}
-    
+
     ; Disp QTY
     Send, % dspQty
     Send, {Tab}
@@ -273,7 +274,8 @@ handleMalaronePed(key, data) {
     Sleep, 1000
 
     ; Days
-    Send, % days	; DAYS
+    MsgBox, % Ceil(days)
+    Send, % Ceil(days)	; DAYS
     Sleep, 500
 
     Send, {F12}	; final fill
