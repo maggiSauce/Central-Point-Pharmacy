@@ -227,55 +227,66 @@ handleMalaroneAdult(key, data) {
         Return
 }
 
-handleMalaronePed() {
+handleMalaronePed(key, data) {
+    sigTemplate := ""
+
     dspQty := data["Total Malaria tabs Malarone"]   ; get the dspqty for malarone adult
     if (data["3T QD - MP"] == "/Yes") {
         days := dspQty / 3
+        sigNum := 3
     } else if (data["2T QD - MP"] == "/Yes") {
         days := dspQty / 2
+        sigNum := 2
     } else if (data["1T QD - MP"] == "/Yes") {
         days := dspQty / 1
+        sigNum := 1
     } else if (data["3/4T QD - MP"] == "/Yes") {
         days := dspQty / (3/4)
+        sigNum := "3/4"
     } else if (data["1/2T QD - MP"] == "/Yes") {
         days := dspQty / (1/2)
+        sigNum := "1/2"
     } else {
         MsgBox, "No box selected"
         ExitApp, 301
     }
 
-     ; Disp QTY
-        Send, % dspQty
-        Send, {Tab}
-        Sleep, 500
+    sigTemplate := % "TAKE " sigNum " TABLET ONCE DAILY (WITH FOOD), START 1 DAY PRIOR TO EXPOSURE, DURING STAY IN REGION AND FOR 1 WEEK AFTER LEAVING ENDEMIC AREA"
+    Send, sigTemplate
+    Send, {Tab}
+    
+    ; Disp QTY
+    Send, % dspQty
+    Send, {Tab}
+    Sleep, 500
 
-        ; Send, ^r	; sent ctrl r to specify repeats
-		; Send, % item[""]
-	;	Sleep, 3000	;Remove
-		; Send, {Enter}
-	;	Sleep, 3000	; Test
+    ; Send, ^r	; sent ctrl r to specify repeats
+    ; Send, % item[""]
+;	Sleep, 3000	;Remove
+    ; Send, {Enter}
+;	Sleep, 3000	; Test
 
-        ; make Rx unfilled
-		Send, {Alt}
-		Send, r
-		Send, {Enter}
-		Sleep, 1000
+    ; make Rx unfilled
+    Send, {Alt}
+    Send, r
+    Send, {Enter}
+    Sleep, 1000
 
-        ; Days
-        Send, % days	; DAYS
-		Sleep, 500
+    ; Days
+    Send, % days	; DAYS
+    Sleep, 500
 
-        Send, {F12}	; final fill
-		Sleep, 500
+    Send, {F12}	; final fill
+    Sleep, 500
 
-        Send, {Enter}
-		Send, {Enter}
-		Send, {Enter}
-		Send, {Enter}
-		Sleep, 500
-		Send, {Enter}
-		Sleep, 500
-		Send, {Enter}
-		Sleep, 3000
-        Return
+    Send, {Enter}
+    Send, {Enter}
+    Send, {Enter}
+    Send, {Enter}
+    Sleep, 500
+    Send, {Enter}
+    Sleep, 500
+    Send, {Enter}
+    Sleep, 3000
+    Return
 }
