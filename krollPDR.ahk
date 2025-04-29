@@ -13,8 +13,9 @@ MsgBox, The filepath is %filepath%
 if (!runPython(programPath, filepath)) {    ; exit hotkey execution if runPython returns False
     return
 }
-tempData = parseJSON(JSONPath)     ; load tempFields.Json
-medData = parseJSON(medDataPath)    ; load medications_data.json
+tempData := parseJSON(JSONPath)     ; load tempFields.Json
+medData := parseJSON(medDataPath)    ; load medications_data.json
+MsgBox, Successful JSON reads
 return
 
 runPython(programPath, filepath) {
