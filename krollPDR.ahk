@@ -10,7 +10,7 @@ medDataPath = C:\Users\kroll\Documents\Central-Point-Pharmacy\TempPDFs\medicatio
 ;JSONPath = C:\Users\small\Central-Point-Pharmacy\TempPDFs\tempFields.json
 ;medDataPath = C:\Users\small\Central-Point-Pharmacy\TempPDFs\medications_data.json
 
-
+^Esc::ExitApp	; CTRL + esc
 ^+q::
     InputBox, filepath, Input the pdf file
     if (filepath == "") {
@@ -154,6 +154,6 @@ fillIndividualDrug(data, medData) {
 		Sleep, 500
 		Send, {Enter}
 		Sleep, 3000
-        return
     }
+    return
 }
