@@ -73,35 +73,35 @@ fillIndividualDrug(data) {
     Sleep, 1000
 
     for key, value in data {
-        MsgBox, % key, % value
+        MsgBox, % "Key" key "Value: " value
     }
     
     ; active field is "Drug Search"
-    Send, % *DIN*   ; DIN
-    Send, {Tab}
-    Send, 14127     ; doc primary key
-    Send, {Enter}
-    Sleep, 1000
+    ; Send, % *DIN*   ; DIN
+    ; Send, {Tab}
+    ; Send, 14127     ; doc primary key
+    ; Send, {Enter}
+    ; Sleep, 1000
 
     ; Display Quantity
-    Send, % *DISPQTY*
-    Sleep, 1000
+    ; Send, % *DISPQTY*
+    ; Sleep, 1000
 
     ; make Rx unfilled
-    Send, {Alt}
-    Send, r
-    Send, {Enter}
-    Sleep, 1000
+    ; Send, {Alt}
+    ; Send, r
+    ; Send, {Enter}
+    ; Sleep, 1000
 
     ; Days
-    Send, % *DAYS*
-    Sleep, 500
+    ; Send, % *DAYS*
+    ; Sleep, 500
 
-    Send, {F12}     ; send final fill request
-    Sleep, 500
+    ; Send, {F12}     ; send final fill request
+    ; Sleep, 500
 
-    Send, {Enter}
-    Sleep, 500
-    Send, {Enter}
-    Sleep, 3000
+    ; Send, {Enter}
+    ; Sleep, 500
+    ; Send, {Enter}
+    ; Sleep, 3000
 }
