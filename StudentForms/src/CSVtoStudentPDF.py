@@ -1,6 +1,10 @@
 import csv
+from pypdf import PdfReader, PdfWriter
 
-def openFile(filepath:str) -> list:
+PDFTEMPLATEPATH = r"C:\Users\small\Central-Point-Pharmacy\StudentForms\Norquest.pdf"
+PDFEXPORTPATH = r"C:\Users\small\Central-Point-Pharmacy\StudentForms\TempExport\Tester.pdf"
+
+def openFile(filepath:str) -> dict:
     '''
     opens and formats a file
     returns a list of each line in the file
@@ -18,8 +22,25 @@ def openFile(filepath:str) -> list:
         }
     return filledFieldsDict
 
-def main():
-    test = openFile(r"C:\Users\small\Central-Point-Pharmacy\StudentForms\Patient listing report.csv")
-    print(test)
+def formatPLR(PLRDict: dict) -> dict:
+    '''
+    Formats the Patient Listing Report dictionary
+    '''
+    commentsValue = PLRDict.pop("Comments")
+    commentsList = commentsValue.split("\n")
+    commentsList[0] = commentsList[0][9:]       # removes "General: " from first element
+    for commentVal in commentsList:
+        pair = commentVal.split(":")
+        for element in pair:
+            element = element.strip()
+        PLRDict[pair[0]] = pair[1]
+    return PLRDict
 
+
+def main():
+    PLRDict = formatPLR(openFile(r"C:\Users\small\Central-Point-Pharmacy\StudentForms\Patient listing report.csv"))
+    print(PLRDict)
+
+    reader = PdfReader(PDFTEMPLATEPATH)  # Replace with your actual file
+    writer = PdfWriter(PDFEXPORTPATH)
 main()
