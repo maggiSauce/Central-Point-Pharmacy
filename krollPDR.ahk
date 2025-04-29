@@ -42,16 +42,6 @@ parseJSON(pathToJson) {
         return 0
     }
 
-     ; Wait until the file exists and is not empty
-    Loop {
-        if (FileExist(pathToJson)) {
-            FileGetSize, fileSize, %pathToJson%
-            if (fileSize > 0)
-                break
-        }
-        Sleep, 100  ; wait 100 milliseconds before checking again
-    }
-
     FileRead, jsonContent, %pathToJson%   ; load the file
     if (jsonContent = "") {
         MsgBox % "Error: JSON file is empty."
