@@ -57,8 +57,8 @@ def fillPDF():
 
 
 def main():
-    PLRDict = formatPLR(openFile(r"C:\Users\small\Central-Point-Pharmacy\StudentForms\Patient listing report.csv"))
-    print(PLRDict)
+    PDFDict = formatPLR(openFile(r"C:\Users\small\Central-Point-Pharmacy\StudentForms\Patient listing report.csv"))
+    print(PDFDict)
 
     reader = PdfReader(PDFTEMPLATEPATH)  # Replace with your actual file
     writer = PdfWriter(PDFEXPORTPATH)
