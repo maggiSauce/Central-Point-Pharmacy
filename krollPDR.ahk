@@ -109,6 +109,14 @@ fillIndividualDrug(data, medData) {
         if (item["DIN"] == "02247208") {
             handleDukoral(key)
         }
+        if (item["DIN"] == "02466783") {
+            handleMalaroneAdult(key, data)
+            continue
+        }
+        if (item["DIN"] == "02264935") {
+            handleMalaronePed(key, data)
+            continue
+        }
        
         ; sig
         if (item["sig"] == "DEFAULT") {
@@ -177,4 +185,97 @@ handleDukoral(key) {
         Sleep, 1000
     }
     return
+}
+
+handleMalaroneAdult(key, data) {
+    ; calculate the DQ and Days
+    dspQty := data["Total Malaria tabs Malarone"]   ; get the dspqty for malarone adult
+    
+     ; Disp QTY
+        Send, % dspQty
+        Send, {Tab}
+        Sleep, 500
+
+        ; Send, ^r	; sent ctrl r to specify repeats
+		; Send, % item[""]
+	;	Sleep, 3000	;Remove
+		; Send, {Enter}
+	;	Sleep, 3000	; Test
+
+        ; make Rx unfilled
+		Send, {Alt}
+		Send, r
+		Send, {Enter}
+		Sleep, 1000
+
+        ; Days
+        Send, % dspQty	; DAYS
+		Sleep, 500
+
+        Send, {F12}	; final fill
+		Sleep, 500
+
+        Send, {Enter}
+		Send, {Enter}
+		Send, {Enter}
+		Send, {Enter}
+		Sleep, 500
+		Send, {Enter}
+		Sleep, 500
+		Send, {Enter}
+		Sleep, 3000
+        Return
+}
+
+handleMalaronePed() {
+    dspQty := data["Total Malaria tabs Malarone"]   ; get the dspqty for malarone adult
+    if (data["3T QD - MP"] == "/Yes") {
+        days := dspQty / 3
+    } else if (data["2T QD - MP"] == "/Yes") {
+        days := dspQty / 2
+    } else if (data["1T QD - MP"] == "/Yes") {
+        days := dspQty / 1
+    } else if (data["3/4T QD - MP"] == "/Yes") {
+        days := dspQty / (3/4)
+    } else if (data["1/2T QD - MP"] == "/Yes") {
+        days := dspQty / (1/2)
+    } else {
+        MsgBox, "No box selected"
+        ExitApp, 301
+    }
+
+     ; Disp QTY
+        Send, % dspQty
+        Send, {Tab}
+        Sleep, 500
+
+        ; Send, ^r	; sent ctrl r to specify repeats
+		; Send, % item[""]
+	;	Sleep, 3000	;Remove
+		; Send, {Enter}
+	;	Sleep, 3000	; Test
+
+        ; make Rx unfilled
+		Send, {Alt}
+		Send, r
+		Send, {Enter}
+		Sleep, 1000
+
+        ; Days
+        Send, % days	; DAYS
+		Sleep, 500
+
+        Send, {F12}	; final fill
+		Sleep, 500
+
+        Send, {Enter}
+		Send, {Enter}
+		Send, {Enter}
+		Send, {Enter}
+		Sleep, 500
+		Send, {Enter}
+		Sleep, 500
+		Send, {Enter}
+		Sleep, 3000
+        Return
 }
