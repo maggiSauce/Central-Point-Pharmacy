@@ -68,9 +68,13 @@ parseJSON(pathToJson) {
     return data
 }
 
-fillIndividualDrug() {
+fillIndividualDrug(data) {
     Send, {F12}     ; create new Rx
     Sleep, 1000
+
+    for key, value in data {
+        MsgBox, % key, % value
+    }
     
     ; active field is "Drug Search"
     Send, % *DIN*   ; DIN
