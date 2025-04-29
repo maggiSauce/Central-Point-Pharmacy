@@ -105,6 +105,8 @@ fillIndividualDrug(data, medData) {
         Send, {Enter}
         Sleep, 1000
 
+        handleDukoral(key)
+       
         ; sig
         if (item["sig"] == "DEFAULT") {
             ; pass
@@ -154,6 +156,22 @@ fillIndividualDrug(data, medData) {
 		Sleep, 500
 		Send, {Enter}
 		Sleep, 3000
+    }
+    return
+}
+
+handleDukoral(key) {
+     ; Dukoral exception
+    if (key == "Dukorol") {     ; select first version of dukoral
+        Send, {Enter}
+        Sleep, 1000
+    }
+    if (key == "Dukorol booster") {
+        Send, {Down}	; select second version of Dukorol
+        Send, {Enter}
+        Sleep, 500
+        Send, {Enter}
+        Sleep, 1000
     }
     return
 }
