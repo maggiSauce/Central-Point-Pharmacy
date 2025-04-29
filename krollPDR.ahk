@@ -4,7 +4,7 @@ programPath = C:\Users\kroll\Documents\Central-Point-Pharmacy\PDFScrape.py
 JSONPath = C:\Users\kroll\Documents\Central-Point-Pharmacy\TempPDFs\tempFields.json
 ; medDataPath = C:\Users\kroll\Documents\Central-Point-Pharmacy\TempPDFs\medications_data.json
 medDataPath = C:\Users\kroll\Documents\Central-Point-Pharmacy\TempPDFs\medications_data_with_DSigs.json
-travelPDFPath = C:\Users\kroll\Documents\TravelVaccinationForms\
+travelPDFPath = C:\Users\kroll\Desktop\TravelVaccinationForms\
 
 ;programPath = C:\Users\small\Central-Point-Pharmacy\PDFScrape.py
 ;JSONPath = C:\Users\small\Central-Point-Pharmacy\TempPDFs\tempFields.json
