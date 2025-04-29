@@ -137,7 +137,17 @@ fillIndividualDrug(data, medData) {
 		Send, {Enter}
 		Sleep, 1000
 
-        Sleep 100
+        ; Days
+        Send, % item["days_supply"]	; DAYS
+		Sleep, 500
+
+        Send, {F12}	; final fill
+		Sleep, 500
+
+        Send, {Enter}
+		Sleep, 500
+		Send, {Enter}
+		Sleep, 3000
         return
     }
     
