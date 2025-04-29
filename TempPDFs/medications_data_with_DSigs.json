@@ -94,7 +94,6 @@
         "total_dispense": 1
     },
     "Yellow Fever": {
-        "DIN": "00428833",
         "sig": "DEFAULT",
         "quantity": 1,
         "days_supply": 28,
@@ -119,7 +118,7 @@
     },
     "Boostrix": {
         "DIN": "02247600",
-        "sig": "IDEFAULT",
+        "sig": "DEFAULT",
         "quantity": 0.5,
         "days_supply": 28,
         "refills": 0,
