@@ -114,8 +114,11 @@ fillIndividualDrug(data, medData) {
         }   else if (item["DIN"] == "02264935") {
             handleMalaronePed(key, data)
             continue
-        } else if (item["DIN"] == "00725250") {
+        } else if (item["DIN"] == "00725250") {     ; Doxycyline
             handleVariableDQandDays("Total Malaria tabs Doxy", data)
+            continue
+        } else if (item["DIN"] == "02244366") {     ; mefloquine
+            handleMefloquine(data)
             continue
         }
        
