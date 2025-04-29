@@ -3,7 +3,7 @@
 programPath = C:\Users\kroll\Documents\Central-Point-Pharmacy\PDFScrape.py
 JSONPath = C:\Users\kroll\Documents\Central-Point-Pharmacy\TempPDFs\tempFields.json
 ; medDataPath = C:\Users\kroll\Documents\Central-Point-Pharmacy\TempPDFs\medications_data.json
-medDataPath = C:\Users\kroll\Documents\Central-Point-Pharmacy\TempPDFs\medications_data_withDsigs.json
+medDataPath = C:\Users\kroll\Documents\Central-Point-Pharmacy\TempPDFs\medications_data_withDSigs.json
 
 
 ;programPath = C:\Users\small\Central-Point-Pharmacy\PDFScrape.py
