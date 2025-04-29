@@ -134,6 +134,10 @@
     "Diamox Tabs Prevent": null,
     "AZ 300mg/15mL": {
         "DIN": "02274388",
+        "sig": "VARIABLE",
+        "quantity": 15,
+        "days_supply": 3,
+        "refills": 0,
         "quantity_per_bottle": 15
     },
     "AZ 600mg/15mL": {

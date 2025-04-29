@@ -135,8 +135,10 @@ fillIndividualDrug(data, medData) {
         if (item["sig"] == "DEFAULT") {
             ; pass
         } else if (item["sig"] == "VARIABLE") {
-            MsgBox, Variable Sig, Stopping for now
-            return
+            if (item["DIN"] == "02274388") {
+                handleAzithroSusp(data)
+            }
+            Send, {Tab}
         } else {    ; case for non default sig
             Send, % item["sig"]
             Send, {Tab}
@@ -374,5 +376,13 @@ handleMefloquine(data) {
     Sleep, 500
     Send, {Enter}
     Sleep, 3000
+    Return
+}
+
+handleAzithroSusp(data) {
+    azML := data["AZ_mL"]   ; get the ml amout for az
+
+    sigTemplate := % "Give " azML " mL daily for 3 days (for travellers diarrhea)(discard remaining)"
+    Send, % sigTemplate
     Return
 }
