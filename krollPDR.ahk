@@ -26,7 +26,7 @@ medDataPath = C:\Users\kroll\Documents\Central-Point-Pharmacy\TempPDFs\medicatio
         return
     }
     MsgBox, Successful JSON reads
-    fillIndividualDrug(tempData)
+    fillIndividualDrug(tempData, medData)
     return
 
 runPython(programPath, filepath) {
@@ -69,12 +69,16 @@ parseJSON(pathToJson) {
     return data
 }
 
-fillIndividualDrug(data) {
+fillIndividualDrug(data, medData) {
     Send, {F12}     ; create new Rx
     Sleep, 1000
 
     for key, value in data {
-        MsgBox, % "Key" key "Value: " value
+        ; MsgBox, % "Key: " key " Value: " value
+        if (value == "/Yes") {
+            MsgBox, % "Key: " key "Value: " value
+        }
+
     }
     
     ; active field is "Drug Search"
