@@ -70,9 +70,6 @@ parseJSON(pathToJson) {
 }
 
 fillIndividualDrug(data, medData) {
-    Send, {F12}     ; create new Rx
-    Sleep, 1000
-
     for key, value in data {
         ; MsgBox, % "Key: " key " Value: " value
         if (value != "/Yes") {
@@ -90,6 +87,16 @@ fillIndividualDrug(data, medData) {
 
         ; at this point, the item will have a been checked yes and have an associated DIN
         MsgBox, % "Key: " key " Value: " value " DIN: " item["DIN"]
+
+        Send, {F12}     ; create new Rx
+        Sleep, 1000
+
+        Send, % item["DIN"]
+        Send, {Tab}
+        Send, 14127
+        Send, Enter
+        Sleep 100
+        return
     }
     
     ; active field is "Drug Search"
