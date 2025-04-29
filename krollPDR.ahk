@@ -12,10 +12,8 @@ medDataPath = C:\Users\small\Central-Point-Pharmacy\TempPDFs\medications_data.js
     if (filepath == "") {
         MsgBox, No filepath given
         return
-    } else {
-        MsgBox, The filepath is %filepath%
     }
-    
+
     if (!runPython(programPath, filepath)) {    ; exit hotkey execution if runPython returns False
         return
     }
