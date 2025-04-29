@@ -72,15 +72,13 @@
         "total_dispense": 1
     },
     "Twinrix": {
-        "DIN": "02230578",
-        "sig": "TWINRIX",
+        "sig": "DEFAULT",
         "quantity": 1,
         "days_supply": 28,
         "refills": 2,
         "total_dispense": 1
     },
     "Vivotif": {
-        "DIN": "00885975",
         "sig": "DEFAULT",
         "quantity": 4,
         "days_supply": 7,
@@ -105,7 +103,7 @@
     },
     "Ixiaro": {
         "DIN": "02333279",
-        "sig": "DEFAULT",
+        "sig": "IXIARO",
         "quantity": 1,
         "days_supply": 28,
         "refills": 2,
@@ -195,13 +193,15 @@
         "total_dispense": 1
     },
     "Twinrix; Trad": {
-        "sig": "TWINRIX",
+        "DIN": "02230578",
+        "sig": "INJECT 1ML INTRAMUSCULARLY (0,1 6 MONTHS)",
         "quantity": 1,
         "days_supply": 28,
         "refills": 2,
         "total_dispense": 1
     },
     "Twinrix: Rapid": {
+        "DIN": "02230578",
         "sig": "INJECT 1ML INTRAMUSCULARLY (0,7,21 DAYS 12 MONTHS)",
         "quantity": 1,
         "days_supply": 7,
@@ -225,6 +225,7 @@
         "total_dispense": 1
     },
     "Twinrix; Alt": {
+        "DIN": "02230578",
         "sig": "INJECT 1ML INTRAMUSCULARLY (0, 6-12 MONTHS)",
         "quantity": 1,
         "days_supply": 28,
@@ -232,6 +233,7 @@
         "total_dispense": 1
     },
     "Ixiaro; Accelerated": {
+        "DIN": "02333279",
         "sig": "IXIAROA",
         "quantity": 1,
         "days_supply": 7,
