@@ -146,6 +146,11 @@ fillIndividualDrug(data, medData) {
 		Sleep, 500
 
         Send, {Enter}
+		Send, {Enter}
+		Send, {Enter}
+		Send, {Enter}
+		Sleep, 500
+		Send, {Enter}
 		Sleep, 500
 		Send, {Enter}
 		Sleep, 3000
