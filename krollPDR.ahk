@@ -45,7 +45,7 @@ parseJSON(pathToJson) {
     FileRead, jsonContent, %pathToJson%   ; load the file
     if (jsonContent = "") {
         MsgBox % "Error: JSON file is empty."
-        return
+        return 0
     }
 
     data := JSON.Load(jsonContent)      ; parse json
@@ -53,7 +53,7 @@ parseJSON(pathToJson) {
         MsgBox % "JSON loaded successfully!"
     } else {
         MsgBox % "Failed to load JSON."
-        return
+        return 0
     }
     return data
 }
