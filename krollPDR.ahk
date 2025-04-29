@@ -75,11 +75,11 @@ fillIndividualDrug(data, medData) {
         if (value != "/Yes") {
             continue    ; do not do iteration if not checked yes
         }
-        MsgBox, Yes
+        ; MsgBox, Yes
         if (!medData.HasKey(key)) {      ; check if data.key is in medData.key
             continue
         }
-        MsgBox, HasKey
+        ; MsgBox, HasKey
         item := medData[key]
         if (!(IsObject(item) && item.HasKey("DIN"))) {   ; check if item has a DIN
             continue
@@ -95,6 +95,29 @@ fillIndividualDrug(data, medData) {
         Send, {Tab}
         Send, 14127
         Send, {Enter}
+        Sleep, 1000
+
+        ; sig
+        Send, % item["sig"]
+        Send, {Tab}
+
+        ; Disp QTY
+        Send, % item["quantity"]
+        Send, {Tab}
+        Sleep, 500
+
+        Send, ^r	; sent ctrl r to specify repeats
+		Send, % item[""]
+	;	Sleep, 3000	;Remove
+		Send, {Enter}
+	;	Sleep, 3000	; Test
+
+        ; make Rx unfilled
+		Send, {Alt}
+		Send, r
+		Send, {Enter}
+		Sleep, 1000
+
         Sleep 100
         return
     }
