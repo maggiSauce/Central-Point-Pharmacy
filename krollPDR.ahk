@@ -70,6 +70,8 @@ parseJSON(pathToJson) {
 }
 
 fillIndividualDrug(data, medData) {
+    firstTime := true
+
     for key, value in data {
         ; MsgBox, % "Key: " key " Value: " value
         if (value != "/Yes") {
@@ -88,9 +90,13 @@ fillIndividualDrug(data, medData) {
         ; at this point, the item will have a been checked yes and have an associated DIN
         MsgBox, % "Key: " key " Value: " value " DIN: " item["DIN"]
 
-        Send, {F12}     ; create new Rx
-        Sleep, 1000
+        if (firstTime) {
+            Send, {F12}     ; create new Rx
+            Sleep, 1000
+            firstTime := false
+        }
 
+        ; DIN and Doc
         Send, % item["DIN"]
         Send, {Tab}
         Send, 14127
@@ -98,10 +104,16 @@ fillIndividualDrug(data, medData) {
         Sleep, 3000
 
         ; sig
-        Send, % item["sig"]
-        Send, {Tab}
+        if (item["sig"] == "DEFAULT") {
+            Send, {Tab}
+        } else if (item["sig"] == "VARIABLE") {
+            MsgBox, Variable Sig, Stopping for now
+            return
+        } else {
+            Send, % item["sig"]
+            Send, {Tab}
+        }
         Sleep, 1000
-
 
         ; Disp QTY
         Send, % item["quantity"]
