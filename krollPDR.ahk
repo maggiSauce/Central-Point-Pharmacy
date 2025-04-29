@@ -162,19 +162,18 @@ fillIndividualDrug(data, medData) {
 
 handleDukoral(key) {
      ; Dukoral exception
-    if (key == "Dukorol") {     ; select first version of dukoral
+    if (key == "Dukoral") {     ; select first version of dukoral
         Send, {Enter}
         Sleep, 500
         Send, {Enter}
         Sleep, 1000
     }
-    if (key == "Dukorol booster") {
+    if (key == "Dukoral booster") {
         Send, {Down}	; select second version of Dukorol
         Send, {Enter}
         Sleep, 500
         Send, {Enter}
         Sleep, 1000
     }
-    MsgBox, Done HandleDukorol
     return
 }
