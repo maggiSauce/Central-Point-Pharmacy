@@ -9,7 +9,13 @@ medDataPath = C:\Users\small\Central-Point-Pharmacy\TempPDFs\medications_data.js
 
 ^+q::
     InputBox, filepath, Input the pdf file
-    MsgBox, The filepath is %filepath%
+    if (filepath == "") {
+        MsgBox, No filepath given
+        return
+    } else {
+        MsgBox, The filepath is %filepath%
+    }
+    
     if (!runPython(programPath, filepath)) {    ; exit hotkey execution if runPython returns False
         return
     }
@@ -27,6 +33,10 @@ runPython(programPath, filepath) {
     RunWait, python "%programPath%" "%filepath%"
     exitCode := ErrorLevel      ; save the python exit code
 
+    if (exitCode == 102) {
+        MsgBox, %filepath% does not exist
+        return 0
+    }
     if (exitCode != 0) {
         MsgBox, Python file exited with non-zero code: %exitCode%
         return false
