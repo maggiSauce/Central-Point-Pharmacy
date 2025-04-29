@@ -78,9 +78,11 @@ fillIndividualDrug(data, medData) {
         if (value != "/Yes") {
             continue    ; do not do iteration if not checked yes
         }
+        MsgBox, Yes
         if (!medData.HasKey(key)) {      ; check if data.key is in medData.key
             continue
         }
+        MsgBox, HasKey
         item = medData[key]
         if (!(IsObject(item) && item.HasKey("DIN"))) {   ; check if item has a DIN
             continue
