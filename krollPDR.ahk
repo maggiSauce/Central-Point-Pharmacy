@@ -95,11 +95,13 @@ fillIndividualDrug(data, medData) {
         Send, {Tab}
         Send, 14127
         Send, {Enter}
-        Sleep, 1000
+        Sleep, 3000
 
         ; sig
         Send, % item["sig"]
         Send, {Tab}
+        Sleep, 1000
+
 
         ; Disp QTY
         Send, % item["quantity"]
