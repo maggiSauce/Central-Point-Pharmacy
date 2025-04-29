@@ -27,7 +27,7 @@ medDataPath = C:\Users\kroll\Documents\Central-Point-Pharmacy\TempPDFs\medicatio
     if (!medData := parseJSON(medDataPath)) {    ; load medications_data.json
         return
     }
-    MsgBox, Successful JSON reads
+    ; MsgBox, Successful JSON reads
     fillIndividualDrug(tempData, medData)
     MsgBox, Done!!! :) 
     return
@@ -91,7 +91,7 @@ fillIndividualDrug(data, medData) {
         }
 
         ; at this point, the item will have a been checked yes and have an associated DIN
-        MsgBox, % "Key: " key " Value: " value " DIN: " item["DIN"]
+        ; MsgBox, % "Key: " key " Value: " value " DIN: " item["DIN"]
 
         if (firstTime) {
             Send, {F12}     ; create new Rx
@@ -163,14 +163,14 @@ fillIndividualDrug(data, medData) {
 
 handleDukoral(key) {
      ; Dukoral exception
-    if (key == "Dukoral") {     ; select first version of dukoral
+    if (key == "Dukoral") {     
+        Send, {Down}	; select second version of Dukorol
         Send, {Enter}
         Sleep, 500
         Send, {Enter}
         Sleep, 1000
     }
-    if (key == "Dukoral booster") {
-        Send, {Down}	; select second version of Dukorol
+    if (key == "Dukoral booster") { ; select first version of dukoral
         Send, {Enter}
         Sleep, 500
         Send, {Enter}
