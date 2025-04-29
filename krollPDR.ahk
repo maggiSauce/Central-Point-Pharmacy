@@ -107,7 +107,7 @@ fillIndividualDrug(data, medData) {
 
         ; sig
         if (item["sig"] == "DEFAULT") {
-            Send, {Tab}
+            ; pass
         } else if (item["sig"] == "VARIABLE") {
             MsgBox, Variable Sig, Stopping for now
             return
@@ -122,10 +122,10 @@ fillIndividualDrug(data, medData) {
         Send, {Tab}
         Sleep, 500
 
-        Send, ^r	; sent ctrl r to specify repeats
-		Send, % item[""]
+        ; Send, ^r	; sent ctrl r to specify repeats
+		; Send, % item[""]
 	;	Sleep, 3000	;Remove
-		Send, {Enter}
+		; Send, {Enter}
 	;	Sleep, 3000	; Test
 
         ; make Rx unfilled
