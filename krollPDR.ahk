@@ -4,7 +4,7 @@ programPath = C:\Users\kroll\Documents\Central-Point-Pharmacy\PDFScrape.py
 JSONPath = C:\Users\kroll\Documents\Central-Point-Pharmacy\TempPDFs\tempFields.json
 ; medDataPath = C:\Users\kroll\Documents\Central-Point-Pharmacy\TempPDFs\medications_data.json
 medDataPath = C:\Users\kroll\Documents\Central-Point-Pharmacy\TempPDFs\medications_data_with_DSigs.json
-
+travelPDFPath = C:\Users\kroll\Documents\TravelVaccinationForms\
 
 ;programPath = C:\Users\small\Central-Point-Pharmacy\PDFScrape.py
 ;JSONPath = C:\Users\small\Central-Point-Pharmacy\TempPDFs\tempFields.json
@@ -17,7 +17,8 @@ medDataPath = C:\Users\kroll\Documents\Central-Point-Pharmacy\TempPDFs\medicatio
         MsgBox, No filepath given
         return
     }
-
+    filepath := % travelPDFPath filepath
+    ; MsgBox % filepath
     if (!runPython(programPath, filepath)) {    ; exit hotkey execution if runPython returns False
         return
     }
