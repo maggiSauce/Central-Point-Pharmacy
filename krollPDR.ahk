@@ -29,6 +29,7 @@ medDataPath = C:\Users\kroll\Documents\Central-Point-Pharmacy\TempPDFs\medicatio
     }
     MsgBox, Successful JSON reads
     fillIndividualDrug(tempData, medData)
+    MsgBox, Done!!! :) 
     return
 
 runPython(programPath, filepath) {
