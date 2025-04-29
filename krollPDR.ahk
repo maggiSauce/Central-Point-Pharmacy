@@ -61,7 +61,7 @@ parseJSON(pathToJson) {
 
     data := JSON.Load(jsonContent)      ; parse json
     if (IsObject(data)) {
-        MsgBox % "JSON loaded successfully!"
+        ;MsgBox % "JSON loaded successfully!"
     } else {
         MsgBox % "Failed to load JSON."
         return 0
@@ -75,10 +75,19 @@ fillIndividualDrug(data, medData) {
 
     for key, value in data {
         ; MsgBox, % "Key: " key " Value: " value
-        if (value == "/Yes") {
-            MsgBox, % "Key: " key "Value: " value
+        if (value != "/Yes") {
+            continue    ; do not do iteration if not checked yes
+        }
+        if (!medData.HasKey(key)) {      ; check if data.key is in medData.key
+            continue
+        }
+        item = medData[key]
+        if (!(IsObject(item) && item.HasKey("DIN"))) {   ; check if item has a DIN
+            continue
         }
 
+        ; at this point, the item will have a been checked yes and have an associated DIN
+        MsgBox, % "Key: " key " Value: " value " DIN: " item["DIN"]
     }
     
     ; active field is "Drug Search"
