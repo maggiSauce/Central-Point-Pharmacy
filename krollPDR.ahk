@@ -1,10 +1,12 @@
 #include JSON.ahk
 
-;programPath = C:\Users\kroll\Documents\pythonStuff\PDFScrape.py
-programPath = C:\Users\small\Central-Point-Pharmacy\PDFScrape.py
-JSONPath = C:\Users\small\Central-Point-Pharmacy\TempPDFs\tempFields.json
-;JSONPath = C:\Users\kroll\Documents\TempPDFs\tempFields.json
-medDataPath = C:\Users\small\Central-Point-Pharmacy\TempPDFs\medications_data.json
+programPath = C:\Users\kroll\Documents\Central-Point-Pharmacy\PDFScrape.py
+JSONPath = C:\Users\kroll\Documents\Central-Point-Pharmacy\TempPDFs\tempFields.json
+medDataPath = C:\Users\kroll\Documents\Central-Point-Pharmacy\TempPDFs\medications_data.json
+
+;programPath = C:\Users\small\Central-Point-Pharmacy\PDFScrape.py
+;JSONPath = C:\Users\small\Central-Point-Pharmacy\TempPDFs\tempFields.json
+;medDataPath = C:\Users\small\Central-Point-Pharmacy\TempPDFs\medications_data.json
 
 
 ^+q::
