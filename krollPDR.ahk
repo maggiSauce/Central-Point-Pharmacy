@@ -125,6 +125,8 @@ fillIndividualDrug(data, medData) {
             Send, {Tab}
             handleVariableDQandDays("Diamox Tabs Prevent", data)
             Continue
+        } else if (item["DIN"] == "02333279") {
+            handleIxiaro()
         }
        
         ; sig
@@ -144,11 +146,9 @@ fillIndividualDrug(data, medData) {
         Send, {Tab}
         Sleep, 500
 
-        ; Send, ^r	; sent ctrl r to specify repeats
-		; Send, % item[""]
-	;	Sleep, 3000	;Remove
-		; Send, {Enter}
-	;	Sleep, 3000	; Test
+        Send, ^r	; sent ctrl r to specify repeats
+		Send, % item["refills"]
+		Send, {Enter}
 
         ; make Rx unfilled
 		Send, {Alt}
@@ -194,6 +194,14 @@ handleDukoral(key) {
     return
 }
 
+handleIxiaro() {
+    Send, {Down}	; select second version of Ixario
+    Send, {Enter}
+    Sleep, 500
+    Send, {Enter}
+    Sleep, 1000
+}
+
 handleVariableDQandDays(fieldName, data) {
     ; calculate the DQ and Days
     dspQty := data[fieldName]   ; get the dspqty for malarone adult
@@ -203,10 +211,10 @@ handleVariableDQandDays(fieldName, data) {
         Send, {Tab}
         Sleep, 500
 
-        ; Send, ^r	; sent ctrl r to specify repeats
-		; Send, % item[""]
+    Send, ^r	; sent ctrl r to specify repeats
+    Send, % item["refills"]
 	;	Sleep, 3000	;Remove
-		; Send, {Enter}
+    Send, {Enter}
 	;	Sleep, 3000	; Test
 
         ; make Rx unfilled
@@ -266,10 +274,10 @@ handleMalaronePed(key, data) {
     Send, {Tab}
     Sleep, 500
 
-    ; Send, ^r	; sent ctrl r to specify repeats
-    ; Send, % item[""]
+    Send, ^r	; sent ctrl r to specify repeats
+    Send, % item["refills"]
 ;	Sleep, 3000	;Remove
-    ; Send, {Enter}
+    Send, {Enter}
 ;	Sleep, 3000	; Test
 
     ; make Rx unfilled
@@ -327,10 +335,10 @@ handleMefloquine(data) {
     Send, {Tab}
     Sleep, 500
 
-    ; Send, ^r	; sent ctrl r to specify repeats
-    ; Send, % item[""]
+    Send, ^r	; sent ctrl r to specify repeats
+    Send, % item["refills"]
 ;	Sleep, 3000	;Remove
-    ; Send, {Enter}
+    Send, {Enter}
 ;	Sleep, 3000	; Test
 
     ; make Rx unfilled
