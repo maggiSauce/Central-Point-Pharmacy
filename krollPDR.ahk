@@ -8,15 +8,19 @@ medDataPath = C:\Users\small\Central-Point-Pharmacy\TempPDFs\medications_data.js
 
 
 ^+q::
-InputBox, filepath, Input the pdf file
-MsgBox, The filepath is %filepath%
-if (!runPython(programPath, filepath)) {    ; exit hotkey execution if runPython returns False
+    InputBox, filepath, Input the pdf file
+    MsgBox, The filepath is %filepath%
+    if (!runPython(programPath, filepath)) {    ; exit hotkey execution if runPython returns False
+        return
+    }
+    if (!tempData := parseJSON(JSONPath)) {     ; load tempFields.Json
+        return
+    }
+    if (!medData := parseJSON(medDataPath)) {    ; load medications_data.json
+        return
+    }
+    MsgBox, Successful JSON reads
     return
-}
-tempData := parseJSON(JSONPath)     ; load tempFields.Json
-medData := parseJSON(medDataPath)    ; load medications_data.json
-MsgBox, Successful JSON reads
-return
 
 runPython(programPath, filepath) {
     MsgBox, python "%programPath%" "%filepath%"
@@ -35,7 +39,7 @@ parseJSON(pathToJson) {
     
     if !FileExist(pathToJson) {
         MsgBox % "Error: JSON file does not exist at " pathToJson
-        return
+        return 0
     }
 
      ; Wait until the file exists and is not empty
