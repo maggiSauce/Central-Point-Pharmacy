@@ -103,7 +103,7 @@ fillIndividualDrug(data, medData) {
         Send, {Tab}
         Send, 14127
         Send, {Enter}
-        Sleep, 3000
+        Sleep, 1000
 
         ; sig
         if (item["sig"] == "DEFAULT") {
@@ -112,6 +112,8 @@ fillIndividualDrug(data, medData) {
             MsgBox, Variable Sig, Stopping for now
             return
         } else {
+            MsgBox, Non default sig
+            return
             Send, % item["sig"]
             Send, {Tab}
         }
@@ -130,6 +132,7 @@ fillIndividualDrug(data, medData) {
 
         ; make Rx unfilled
 		Send, {Alt}
+        Sleep, 1000
 		Send, r
 		Send, {Enter}
 		Sleep, 1000
