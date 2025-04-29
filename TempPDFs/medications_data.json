@@ -6,7 +6,7 @@
     "Az_kg": null,
     "Az_mg": null,
     "Azithro tab": {
-        "DIN": 2442434,
+        "DIN": "02442434",
         "sig": "TD",
         "quantity": 8,
         "days_supply": 3,
@@ -15,7 +15,7 @@
     },
     "Azithro susp": null,
     "Dukoral": {
-        "DIN": 2247208,
+        "DIN": "02247208",
         "sig": "DUKORAL",
         "quantity": 2,
         "days_supply": 14,
@@ -23,7 +23,7 @@
         "total_dispense": 2
     },
     "Dukoral booster": {
-        "DIN": 2247208,
+        "DIN": "02247208",
         "sig": "DUKORALB",
         "quantity": 1,
         "days_supply": 7,
@@ -32,30 +32,30 @@
     },
     "Loperamide": null,
     "Malarone Adult": {
-        "DIN": 2466783,
+        "DIN": "02466783",
         "sig": "MALARONE"
     },
     "Malarone Pediatric": {
-        "DIN": 2264935
+        "DIN": "02264935"
     },
     "Doxycyline": {
-        "DIN": 725250,
+        "DIN": "00725250",
         "sig": "DOXYM"
     },
     "Mefloquine": {
-        "DIN": 2244366,
+        "DIN": "02244366",
         "sig": "MEFLOQUINE"
     },
     "Diamox prevention": {
-        "DIN": 545015,
+        "DIN": "00545015",
         "sig": "ACET"
     },
     "Diamox treatment": {
-        "DIN": 545015,
+        "DIN": "00545015",
         "sig": "ACETT"
     },
     "Avaxim": {
-        "DIN": 2237792,
+        "DIN": "02237792",
         "sig": "AVAXIM",
         "quantity": 1,
         "days_supply": 28,
@@ -63,7 +63,7 @@
         "total_dispense": 1
     },
     "Engerix B": {
-        "DIN": 2487039,
+        "DIN": "02487039",
         "sig": "ENGERIX",
         "quantity": 1,
         "days_supply": 28,
@@ -71,7 +71,7 @@
         "total_dispense": 1
     },
     "Twinrix": {
-        "DIN": 2230578,
+        "DIN": "02230578",
         "sig": "TWINRIX",
         "quantity": 1,
         "days_supply": 28,
@@ -79,7 +79,7 @@
         "total_dispense": 1
     },
     "Vivotif": {
-        "DIN": 885975,
+        "DIN": "00885975",
         "sig": "VIVOTIF",
         "quantity": 4,
         "days_supply": 7,
@@ -87,7 +87,7 @@
         "total_dispense": 4
     },
     "Typhim": {
-        "DIN": 2130955,
+        "DIN": "02130955",
         "sig": "TYPHIM",
         "quantity": 1,
         "days_supply": 28,
@@ -95,7 +95,7 @@
         "total_dispense": 1
     },
     "Yellow Fever": {
-        "DIN": 428833,
+        "DIN": "00428833",
         "sig": "INJ 0.5 ML SUB",
         "quantity": 1,
         "days_supply": 28,
@@ -103,7 +103,7 @@
         "total_dispense": 1
     },
     "Ixiaro": {
-        "DIN": 2333279,
+        "DIN": "02333279",
         "sig": "IXIARO",
         "quantity": 1,
         "days_supply": 28,
@@ -111,7 +111,7 @@
         "total_dispense": 1
     },
     "Rabies": {
-        "DIN": 1908286,
+        "DIN": "01908286",
         "sig": "RABIES",
         "quantity": 1,
         "days_supply": 7,
@@ -119,7 +119,7 @@
         "total_dispense": 1
     },
     "Boostrix": {
-        "DIN": 2247600,
+        "DIN": "02247600",
         "sig": "INJECT 0.5 MLS IM",
         "quantity": 0.5,
         "days_supply": 28,
@@ -135,11 +135,11 @@
     "Diamox Tabs Treat": null,
     "Diamox Tabs Prevent": null,
     "AZ 300mg/15mL": {
-        "DIN": 2274388,
+        "DIN": "02274388",
         "quantity_per_bottle": 15
     },
     "AZ 600mg/15mL": {
-        "DIN": 2332396,
+        "DIN": "02332396",
         "quantities": [
             15,
             22.5,
@@ -206,7 +206,7 @@
         "total_dispense": 1
     },
     "Imovax Polio": {
-        "DIN": 1959042,
+        "DIN": "01959042",
         "sig": "POLIO",
         "quantity": 1,
         "days_supply": 28,
@@ -214,7 +214,7 @@
         "total_dispense": 1
     },
     "Shingrix": {
-        "DIN": 2468425,
+        "DIN": "02468425",
         "sig": "SHINGRIX",
         "quantity": 1,
         "days_supply": 28,
@@ -236,7 +236,7 @@
         "total_dispense": 1
     },
     "Havrix Jr": {
-        "DIN": 2231056,
+        "DIN": "02231056",
         "sig": "HAVRIXJR",
         "quantity": 1,
         "days_supply": 28,
@@ -244,7 +244,7 @@
         "total_dispense": 1
     },
     "Engerix B Jr": {
-        "DIN": 2487020,
+        "DIN": "02487020",
         "sig": "ENGERIX",
         "quantity": 1,
         "days_supply": 28,
@@ -252,7 +252,7 @@
         "total_dispense": 1
     },
     "Twinrix Jr": {
-        "DIN": 2237548,
+        "DIN": "02237548",
         "sig": "TWINJR",
         "quantity": 1,
         "days_supply": 28,
@@ -260,7 +260,7 @@
         "total_dispense": 1
     },
     "MMR": {
-        "DIN": 466085,
+        "DIN": "00466085",
         "sig": "MMR",
         "quantity": 1,
         "days_supply": 28,
@@ -268,7 +268,7 @@
         "total_dispense": 10
     },
     "Varivax": {
-        "DIN": 2246081,
+        "DIN": "02246081",
         "sig": "VAR",
         "quantity": 1,
         "days_supply": 28,
