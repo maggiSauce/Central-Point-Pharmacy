@@ -120,6 +120,11 @@ fillIndividualDrug(data, medData) {
         } else if (item["DIN"] == "02244366") {     ; mefloquine
             handleMefloquine(data)
             continue
+        } else if (item["DIN"] == "00545015") {     ; diamox prevention
+            Send, % item["sig"]
+            Send, {Tab}
+            handleVariableDQandDays("Diamox Tabs Prevent", data)
+            Continue
         }
        
         ; sig
@@ -128,9 +133,7 @@ fillIndividualDrug(data, medData) {
         } else if (item["sig"] == "VARIABLE") {
             MsgBox, Variable Sig, Stopping for now
             return
-        } else {
-            MsgBox, Non default sig
-            return
+        } else {    ; case for non default sig
             Send, % item["sig"]
             Send, {Tab}
         }
