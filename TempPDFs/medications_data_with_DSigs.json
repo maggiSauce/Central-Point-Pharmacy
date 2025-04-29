@@ -65,8 +65,7 @@
         "total_dispense": 1
     },
     "Engerix B": {
-        "DIN": "02487039",
-        "sig": "ENGERIX",
+        "sig": "DEFAULT",
         "quantity": 1,
         "days_supply": 28,
         "refills": 2,
@@ -180,13 +179,15 @@
         "sig": "TAKE 1/4 TABLET ONCE A WEEK, START 1 WEEK PRIOR TO EXPOSURE, DURING STAY IN REGION AND WEEKLY FOR 4 WEEKS AFTER LEAVING ENDEMIC AREA"
     },
     "Engerix; Trad": {
-        "sig": "ENGERIX",
+        "DIN": "02487039",
+        "sig": "INJECT 1ML INTRAMUSCULARLY (0,1,6 MONTHS)",
         "quantity": 1,
         "days_supply": 28,
         "refills": 2,
         "total_dispense": 1
     },
     "Engerix; Rapid": {
+        "DIN": "02487039",
         "sig": "INJECT 1ML INTRAMUSCULARLY (0,7,21 DAYS 12 MONTHS)",
         "quantity": 1,
         "days_supply": 7,
