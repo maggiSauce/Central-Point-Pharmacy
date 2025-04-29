@@ -36,6 +36,12 @@ def formatPLR(PLRDict: dict) -> dict:
         PLRDict[pair[0]] = pair[1]
     return PLRDict
 
+def formatPDFDict(PLRDict):
+    
+
+def fillPDF():
+    pass
+
 
 def main():
     PLRDict = formatPLR(openFile(r"C:\Users\small\Central-Point-Pharmacy\StudentForms\Patient listing report.csv"))
