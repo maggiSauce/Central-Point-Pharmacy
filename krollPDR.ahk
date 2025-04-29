@@ -108,13 +108,14 @@ fillIndividualDrug(data, medData) {
 
         if (item["DIN"] == "02247208") {
             handleDukoral(key)
-        }
-        if (item["DIN"] == "02466783") {
-            handleMalaroneAdult(key, data)
+        } else if (item["DIN"] == "02466783") {    ; malerone adult
+            handleVariableDQandDays("Total Malaria tabs Malarone", data)
             continue
-        }
-        if (item["DIN"] == "02264935") {
+        }   else if (item["DIN"] == "02264935") {
             handleMalaronePed(key, data)
+            continue
+        } else if (item["DIN"] == "00725250") {
+            handleVariableDQandDays("Total Malaria tabs Doxy", data)
             continue
         }
        
@@ -187,9 +188,9 @@ handleDukoral(key) {
     return
 }
 
-handleMalaroneAdult(key, data) {
+handleVariableDQandDays(fieldName, data) {
     ; calculate the DQ and Days
-    dspQty := data["Total Malaria tabs Malarone"]   ; get the dspqty for malarone adult
+    dspQty := data[fieldName]   ; get the dspqty for malarone adult
     
      ; Disp QTY
         Send, % dspQty
@@ -228,10 +229,8 @@ handleMalaroneAdult(key, data) {
 }
 
 handleMalaronePed(key, data) {
-    sigTemplate := ""
-
     dspQty := data["Total Malaria tabs Malarone"]   ; get the dspqty for malarone adult
-    MsgBox, % dspQty
+    ; MsgBox, % dspQty
     if (data["3T QD - MP"] == "/Yes") {
         days := dspQty / 3
         sigNum := 3
@@ -248,7 +247,7 @@ handleMalaronePed(key, data) {
         days := dspQty / (1/2)
         sigNum := "1/2"
     } else {
-        MsgBox, "No box selected"
+        MsgBox, "No malerone pediatric box selected"
         ExitApp, 301
     }
 
@@ -274,7 +273,7 @@ handleMalaronePed(key, data) {
     Sleep, 1000
 
     ; Days
-    MsgBox, % Ceil(days)
+    ; MsgBox, % Ceil(days)
     Send, % Ceil(days)	; DAYS
     Sleep, 500
 
