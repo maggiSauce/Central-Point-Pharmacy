@@ -159,7 +159,6 @@ fillIndividualDrug(data, medData) {
 }
 
 handleDukoral(key) {
-    MsgBox, handling Dukoral
      ; Dukoral exception
     if (key == "Dukorol") {     ; select first version of dukoral
         Send, {Enter}
