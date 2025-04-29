@@ -141,6 +141,7 @@ fillIndividualDrug(data, medData) {
         Send, % item["days_supply"]	; DAYS
 		Sleep, 500
 
+        MsgBox, Done, moving on
         Send, {F12}	; final fill
 		Sleep, 500
 
@@ -150,33 +151,4 @@ fillIndividualDrug(data, medData) {
 		Sleep, 3000
         return
     }
-    
-    ; active field is "Drug Search"
-    ; Send, % *DIN*   ; DIN
-    ; Send, {Tab}
-    ; Send, 14127     ; doc primary key
-    ; Send, {Enter}
-    ; Sleep, 1000
-
-    ; Display Quantity
-    ; Send, % *DISPQTY*
-    ; Sleep, 1000
-
-    ; make Rx unfilled
-    ; Send, {Alt}
-    ; Send, r
-    ; Send, {Enter}
-    ; Sleep, 1000
-
-    ; Days
-    ; Send, % *DAYS*
-    ; Sleep, 500
-
-    ; Send, {F12}     ; send final fill request
-    ; Sleep, 500
-
-    ; Send, {Enter}
-    ; Sleep, 500
-    ; Send, {Enter}
-    ; Sleep, 3000
 }
