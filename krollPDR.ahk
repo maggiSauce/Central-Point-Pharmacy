@@ -3,7 +3,7 @@
 ;programPath = C:\Users\kroll\Documents\pythonStuff\PDFScrape.py
 programPath = C:\Users\small\Central-Point-Pharmacy\PDFScrape.py
 JSONPath = C:\Users\small\Central-Point-Pharmacy\TempPDFs\tempFields.json
-JSONPath = C:\Users\kroll\Documents\TempPDFs\tempFields.json
+;JSONPath = C:\Users\kroll\Documents\TempPDFs\tempFields.json
 medDataPath = C:\Users\small\Central-Point-Pharmacy\TempPDFs\medications_data.json
 
 
@@ -33,6 +33,11 @@ runPython(programPath, filepath) {
 parseJSON(pathToJson) {
     MsgBox, % pathToJson
     
+    if !FileExist(pathToJson) {
+        MsgBox % "Error: JSON file does not exist at " pathToJson
+        return
+    }
+
      ; Wait until the file exists and is not empty
     Loop {
         if (FileExist(pathToJson)) {
@@ -41,11 +46,6 @@ parseJSON(pathToJson) {
                 break
         }
         Sleep, 100  ; wait 100 milliseconds before checking again
-    }
-
-    if !FileExist(pathToJson) {
-        MsgBox % "Error: JSON file does not exist at " pathToJson
-        return
     }
 
     FileRead, jsonContent, %pathToJson%   ; load the file
