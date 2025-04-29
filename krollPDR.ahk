@@ -83,7 +83,7 @@ fillIndividualDrug(data, medData) {
             continue
         }
         MsgBox, HasKey
-        item = medData[key]
+        item := medData[key]
         if (!(IsObject(item) && item.HasKey("DIN"))) {   ; check if item has a DIN
             continue
         }
