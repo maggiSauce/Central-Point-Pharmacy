@@ -127,6 +127,8 @@ fillIndividualDrug(data, medData) {
             Continue
         } else if (item["DIN"] == "02333279") {
             handleIxiaro()
+        } else if (item["DIN"] == "02247600") {
+            handleBoostrix()
         }
        
         ; sig
@@ -196,6 +198,14 @@ handleDukoral(key) {
 
 handleIxiaro() {
     Send, {Down}	; select second version of Ixario
+    Send, {Enter}
+    Sleep, 500
+    Send, {Enter}
+    Sleep, 1000
+}
+
+handleBoostrix() {
+    Send, {Down}	; select second version of Boostrix
     Send, {Enter}
     Sleep, 500
     Send, {Enter}
