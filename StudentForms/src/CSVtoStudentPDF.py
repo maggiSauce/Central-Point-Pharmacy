@@ -25,6 +25,7 @@ def openFile(filepath:str) -> dict:
 def formatPLR(PLRDict: dict) -> dict:
     '''
     Formats the Patient Listing Report dictionary
+    Returns PDFDict which is a dict that holds pdf fields as keys and corresponding values
     '''
     commentsValue = PLRDict.pop("Comments")
     commentsList = commentsValue.split("\n")
@@ -34,10 +35,22 @@ def formatPLR(PLRDict: dict) -> dict:
         for element in pair:
             element = element.strip()
         PLRDict[pair[0]] = pair[1]
-    return PLRDict
 
-def formatPDFDict(PLRDict):
-    
+    PDFDict = {}
+    PDFDict["Last Name"] = PLRDict["LastName"]
+    PDFDict["First Name"] = PLRDict["FirstName"]
+    PDFDict["Date of Birth"] = PLRDict["Birthday"]
+    PDFDict["Gender"] = PLRDict["Sex"]
+    PDFDict["PHN"] = PLRDict["PHN"]
+    PDFDict["Address"] = PLRDict["Address1"]
+    PDFDict["City Town"] = PLRDict["City"]
+    PDFDict["Province"] = PLRDict["Province"]
+    PDFDict["Postal Code"] = PLRDict["Postal"]
+    PDFDict["Phone"] = PLRDict["PhoneNumbers"]
+    PDFDict["Program"] = PLRDict["Program"]
+    PDFDict["Student ID"] = PLRDict["StudentNumber"]
+
+    return PDFDict
 
 def fillPDF():
     pass
