@@ -7,15 +7,23 @@ JSONPath = C:\Users\small\Central-Point-Pharmacy\TempPDFs\tempFields.json
 ^+q::
 InputBox, filepath, Input the pdf file
 MsgBox, The filepath is %filepath%
-runPython(programPath, filepath)
+if (!runPython(programPath, filepath)) {    ; exit hotkey execution if runPython returns False
+    return
+}
 Sleep, 500
 parseJSON()
 return
 
 runPython(programPath, filepath) {
     MsgBox, python "%programPath%" "%filepath%"
-    Run, python "%programPath%" "%filepath%"
-    return
+    RunWait, python "%programPath%" "%filepath%"
+    exitCode := ErrorLevel      ; save the python exit code
+
+    if (exitCode != 0) {
+        MsgBox, Python file exited with non-zero code: %exitCode%
+        return false
+    }
+    return true
 }
 
 parseJSON() {
