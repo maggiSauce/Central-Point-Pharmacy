@@ -3,44 +3,57 @@
 ;programPath = C:\Users\kroll\Documents\pythonStuff\PDFScrape.py
 programPath = C:\Users\small\Central-Point-Pharmacy\PDFScrape.py
 JSONPath = C:\Users\small\Central-Point-Pharmacy\TempPDFs\tempFields.json
+;JSONPath = C:\Users\kroll\Documents\TempPDFs\tempFields.json
+medDataPath = C:\Users\small\Central-Point-Pharmacy\TempPDFs\medications_data.json
+
 
 ^+q::
-InputBox, filepath, Input the pdf file
-MsgBox, The filepath is %filepath%
-runPython(programPath, filepath)
-Sleep, 500
-parseJSON()
-return
+    InputBox, filepath, Input the pdf file
+    if (filepath == "") {
+        MsgBox, No filepath given
+        return
+    }
+
+    if (!runPython(programPath, filepath)) {    ; exit hotkey execution if runPython returns False
+        return
+    }
+    if (!tempData := parseJSON(JSONPath)) {     ; load tempFields.Json
+        return
+    }
+    if (!medData := parseJSON(medDataPath)) {    ; load medications_data.json
+        return
+    }
+    MsgBox, Successful JSON reads
+    return
 
 runPython(programPath, filepath) {
     MsgBox, python "%programPath%" "%filepath%"
-    Run, python "%programPath%" "%filepath%"
-    return
+    RunWait, python "%programPath%" "%filepath%"
+    exitCode := ErrorLevel      ; save the python exit code
+
+    if (exitCode == 102) {
+        MsgBox, %filepath% does not exist
+        return 0
+    }
+    if (exitCode != 0) {
+        MsgBox, Python file exited with non-zero code: %exitCode%
+        return false
+    }
+    return true
 }
 
-parseJSON() {
-    global JSONPath
-    MsgBox, % JSONPath
+parseJSON(pathToJson) {
+    MsgBox, % pathToJson
     
-     ; Wait until the file exists and is not empty
-    Loop {
-        if (FileExist(JSONPath)) {
-            FileGetSize, fileSize, %JSONPath%
-            if (fileSize > 0)
-                break
-        }
-        Sleep, 100  ; wait 100 milliseconds before checking again
+    if !FileExist(pathToJson) {
+        MsgBox % "Error: JSON file does not exist at " pathToJson
+        return 0
     }
 
-    if !FileExist(JSONPath) {
-        MsgBox % "Error: JSON file does not exist at " JSONPath
-        return
-    }
-
-    FileRead, jsonContent, %JSONPath%   ; load the file
+    FileRead, jsonContent, %pathToJson%   ; load the file
     if (jsonContent = "") {
         MsgBox % "Error: JSON file is empty."
-        return
+        return 0
     }
 
     data := JSON.Load(jsonContent)      ; parse json
@@ -48,15 +61,9 @@ parseJSON() {
         MsgBox % "JSON loaded successfully!"
     } else {
         MsgBox % "Failed to load JSON."
-        return
+        return 0
     }
-
-    if (data.HasKey("Check Box6")) {
-        MsgBox, % "data: " data["Check Box6"]
-    } else {
-        MsgBox, No key
-    }
-    return
+    return data
 }
 
 fillIndividualDrug() {

@@ -18,8 +18,8 @@ def main():
     try:
         reader = PdfReader(filepath)
     except Exception as e:
-        log.write(f"Error reading PDR: {e}")
-        print(f"Error reading PDR: {e}")
+        log.write(f"Error reading PDF: {e}")
+        print(f"Error reading PDF: {e}")
         exit(102)
 
     if type(reader) == None:
