@@ -30,7 +30,7 @@ medDataPath = C:\Users\kroll\Documents\Central-Point-Pharmacy\TempPDFs\medicatio
     return
 
 runPython(programPath, filepath) {
-    MsgBox, python "%programPath%" "%filepath%"
+    ; MsgBox, python "%programPath%" "%filepath%"
     RunWait, python "%programPath%" "%filepath%"
     exitCode := ErrorLevel      ; save the python exit code
 
@@ -46,7 +46,7 @@ runPython(programPath, filepath) {
 }
 
 parseJSON(pathToJson) {
-    MsgBox, % pathToJson
+    ; MsgBox, % pathToJson
     
     if !FileExist(pathToJson) {
         MsgBox % "Error: JSON file does not exist at " pathToJson
@@ -94,7 +94,7 @@ fillIndividualDrug(data, medData) {
         Send, % item["DIN"]
         Send, {Tab}
         Send, 14127
-        Send, Enter
+        Send, {Enter}
         Sleep 100
         return
     }
