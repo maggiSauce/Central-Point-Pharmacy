@@ -407,6 +407,7 @@ handleAzithro600(data, item) {
         dspQty := 22.5
     } else if (azML > 7.5) {
         Send, {Down}	; select third (pack size 37.5)
+        Send, {Down}
         Send, {Enter}
         Sleep, 500
         Send, {Enter}
