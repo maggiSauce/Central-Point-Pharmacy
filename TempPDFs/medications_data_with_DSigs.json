@@ -147,6 +147,8 @@
             22.5,
             37.5
         ],
+        "days_supply": 3,
+        "refills": 0,
         "note": "Take roof of (mL total) X3"
     },
     "1T QD - MA": {

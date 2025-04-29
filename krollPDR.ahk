@@ -129,6 +129,9 @@ fillIndividualDrug(data, medData) {
             handleIxiaro()
         } else if (item["DIN"] == "02247600") {
             handleBoostrix()
+        } else if (item["DIN"] == "02332396") {
+            handleAzithro600(data, item)
+            Continue
         }
        
         ; sig
@@ -384,5 +387,71 @@ handleAzithroSusp(data) {
 
     sigTemplate := % "Give " azML " mL daily for 3 days (for travellers diarrhea)(discard remaining)"
     Send, % sigTemplate
+    Return
+}
+
+handleAzithro600(data, item) {
+    azML := data["AZ_mL"]   ; get the ml amout for az
+    if (azML <= 5) {    ; select first (pack size 15)
+        Send, {Enter}
+        Sleep, 500
+        Send, {Enter}
+        Sleep, 1000
+        dspQty := 15
+    } else if (azML > 5 && azML <= 7.5) {
+        Send, {Down}	; select second (pack size 22.5)
+        Send, {Enter}
+        Sleep, 500
+        Send, {Enter}
+        Sleep, 1000
+        dspQty := 22.5
+    } else if (azML > 7.5) {
+        Send, {Down}	; select third (pack size 37.5)
+        Send, {Enter}
+        Sleep, 500
+        Send, {Enter}
+        Sleep, 1000
+        dspQty := 37.5
+    } else {
+        MsgBox, incorrect azithro suspension ML amount. Terminating
+        ExitApp, 201
+    }
+    sigTemplate := % "Give " azML " mL daily for 3 days (for travellers diarrhea)(discard remaining)"
+    Send, % sigTemplate
+    Send, {Tab}
+
+    ; Disp QTY
+    Send, % dspQty
+    Send, {Tab}
+    Sleep, 500
+
+    Send, ^r	; sent ctrl r to specify repeats
+    Send, % item["refills"]
+;	Sleep, 3000	;Remove
+    Send, {Enter}
+;	Sleep, 3000	; Test
+
+    ; make Rx unfilled
+    Send, {Alt}
+    Send, r
+    Send, {Enter}
+    Sleep, 1000
+
+    ; Days
+    Send, % item["days_supply"]	; DAYS
+    Sleep, 500
+
+    Send, {F12}	; final fill
+    Sleep, 500
+
+    Send, {Enter}
+    Send, {Enter}
+    Send, {Enter}
+    Send, {Enter}
+    Sleep, 500
+    Send, {Enter}
+    Sleep, 500
+    Send, {Enter}
+    Sleep, 3000
     Return
 }
