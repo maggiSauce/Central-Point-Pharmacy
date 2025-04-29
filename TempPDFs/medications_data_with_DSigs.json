@@ -239,7 +239,7 @@
     },
     "Havrix Jr": {
         "DIN": "02231056",
-        "sig": "HAVRIXJR",
+        "sig": "DEFAULT",
         "quantity": 1,
         "days_supply": 28,
         "refills": 1,
@@ -247,7 +247,7 @@
     },
     "Engerix B Jr": {
         "DIN": "02487020",
-        "sig": "ENGERIX",
+        "sig": "DEFAULT",
         "quantity": 1,
         "days_supply": 28,
         "refills": 2,
@@ -255,7 +255,7 @@
     },
     "Twinrix Jr": {
         "DIN": "02237548",
-        "sig": "TWINJR",
+        "sig": "DEFAULT",
         "quantity": 1,
         "days_supply": 28,
         "refills": 2,
