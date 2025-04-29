@@ -134,7 +134,6 @@ fillIndividualDrug(data, medData) {
 
         ; make Rx unfilled
 		Send, {Alt}
-        Sleep, 1000
 		Send, r
 		Send, {Enter}
 		Sleep, 1000
@@ -143,7 +142,6 @@ fillIndividualDrug(data, medData) {
         Send, % item["days_supply"]	; DAYS
 		Sleep, 500
 
-        MsgBox, Done, moving on
         Send, {F12}	; final fill
 		Sleep, 500
 
@@ -163,6 +161,8 @@ fillIndividualDrug(data, medData) {
 handleDukoral(key) {
      ; Dukoral exception
     if (key == "Dukorol") {     ; select first version of dukoral
+        Send, {Enter}
+        Sleep, 500
         Send, {Enter}
         Sleep, 1000
     }
