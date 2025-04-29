@@ -7,7 +7,7 @@
     "Az_mg": null,
     "Azithro tab": {
         "DIN": "02442434",
-        "sig": "TD",
+        "sig": "DEFAULT",
         "quantity": 8,
         "days_supply": 3,
         "refills": 0,
@@ -16,7 +16,7 @@
     "Azithro susp": null,
     "Dukoral": {
         "DIN": "02247208",
-        "sig": "DUKORAL",
+        "sig": "DEFAULT",
         "quantity": 2,
         "days_supply": 14,
         "refills": 0,
@@ -24,7 +24,7 @@
     },
     "Dukoral booster": {
         "DIN": "02247208",
-        "sig": "DUKORALB",
+        "sig": "DEFAULT",
         "quantity": 1,
         "days_supply": 7,
         "refills": 0,
@@ -33,18 +33,18 @@
     "Loperamide": null,
     "Malarone Adult": {
         "DIN": "02466783",
-        "sig": "MALARONE"
+        "sig": "DEFAULT"
     },
     "Malarone Pediatric": {
         "DIN": "02264935"
     },
     "Doxycyline": {
         "DIN": "00725250",
-        "sig": "DOXYM"
+        "sig": "DEFAULT"
     },
     "Mefloquine": {
         "DIN": "02244366",
-        "sig": "MEFLOQUINE"
+        "sig": "DEFAULT"
     },
     "Diamox prevention": {
         "DIN": "00545015",
@@ -56,7 +56,7 @@
     },
     "Avaxim": {
         "DIN": "02237792",
-        "sig": "AVAXIM",
+        "sig": "DEFAULT",
         "quantity": 1,
         "days_supply": 28,
         "refills": 1,
@@ -80,7 +80,7 @@
     },
     "Vivotif": {
         "DIN": "00885975",
-        "sig": "VIVOTIF",
+        "sig": "DEFAULT",
         "quantity": 4,
         "days_supply": 7,
         "refills": 0,
@@ -88,7 +88,7 @@
     },
     "Typhim": {
         "DIN": "02130955",
-        "sig": "TYPHIM",
+        "sig": "DEFAULT",
         "quantity": 1,
         "days_supply": 28,
         "refills": 0,
@@ -96,7 +96,7 @@
     },
     "Yellow Fever": {
         "DIN": "00428833",
-        "sig": "INJ 0.5 ML SUB",
+        "sig": "DEFAULT",
         "quantity": 1,
         "days_supply": 28,
         "refills": 0,
@@ -104,7 +104,7 @@
     },
     "Ixiaro": {
         "DIN": "02333279",
-        "sig": "IXIARO",
+        "sig": "DEFAULT",
         "quantity": 1,
         "days_supply": 28,
         "refills": 2,
@@ -112,7 +112,7 @@
     },
     "Rabies": {
         "DIN": "01908286",
-        "sig": "RABIES",
+        "sig": "DEFAULT",
         "quantity": 1,
         "days_supply": 7,
         "refills": 1,
@@ -120,7 +120,7 @@
     },
     "Boostrix": {
         "DIN": "02247600",
-        "sig": "INJECT 0.5 MLS IM",
+        "sig": "IDEFAULT",
         "quantity": 0.5,
         "days_supply": 28,
         "refills": 0,
@@ -207,7 +207,7 @@
     },
     "Imovax Polio": {
         "DIN": "01959042",
-        "sig": "POLIO",
+        "sig": "DEFAULT",
         "quantity": 1,
         "days_supply": 28,
         "refills": 0,
@@ -215,7 +215,7 @@
     },
     "Shingrix": {
         "DIN": "02468425",
-        "sig": "SHINGRIX",
+        "sig": "DEFAULT",
         "quantity": 1,
         "days_supply": 28,
         "refills": 1,
@@ -261,7 +261,7 @@
     },
     "MMR": {
         "DIN": "00466085",
-        "sig": "MMR",
+        "sig": "DEFAULT",
         "quantity": 1,
         "days_supply": 28,
         "refills": 1,
@@ -269,7 +269,7 @@
     },
     "Varivax": {
         "DIN": "02246081",
-        "sig": "VAR",
+        "sig": "DEFAULT",
         "quantity": 1,
         "days_supply": 28,
         "refills": 1,

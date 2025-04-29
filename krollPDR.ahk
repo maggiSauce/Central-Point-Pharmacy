@@ -105,7 +105,9 @@ fillIndividualDrug(data, medData) {
         Send, {Enter}
         Sleep, 1000
 
-        handleDukoral(key)
+        if (item["DIN"] == "02247208") {
+            handleDukoral(key)
+        }
        
         ; sig
         if (item["sig"] == "DEFAULT") {
@@ -173,5 +175,6 @@ handleDukoral(key) {
         Send, {Enter}
         Sleep, 1000
     }
+    MsgBox, Done HandleDukorol
     return
 }
