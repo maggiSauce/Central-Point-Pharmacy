@@ -52,7 +52,9 @@
     },
     "Diamox treatment": {
         "DIN": "00545015",
-        "sig": "ACETT"
+        "sig": "ACETT",
+        "quantity": 8,
+        "days_supply": 4
     },
     "Avaxim": {
         "DIN": "02237792",
