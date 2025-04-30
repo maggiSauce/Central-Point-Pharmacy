@@ -17,15 +17,11 @@ def openFile(filepath:str) -> dict:
     
     with open(filepath, newline='', encoding='utf-8') as csvfile:
         reader = csv.DictReader(csvfile)
-    
-        # Get the first row
-        first_row = next(reader)
-
-        # Filter out empty values (None, empty strings, or whitespace-only strings)
-        filledFieldsDict = {
-            key: value for key, value in first_row.items() if value and value.strip()
-        }
-        rowsList.append(filledFieldsDict)
+        for row in reader:
+            filledFieldsDict = {
+            key: value for key, value in row.items() if value and value.strip()
+            }
+            rowsList.append(filledFieldsDict)
     return rowsList
 
 def extractPhoneNumber(numberString):
@@ -58,36 +54,41 @@ def isFemale(genderString):
         return "/On"
     return '/Off'
     
-def formatPLR(PLRDict: dict) -> dict:
+def formatPLR(PLRList: list) -> list:
     '''
     Formats the Patient Listing Report dictionary
     Returns PDFDict which is a dict that holds pdf fields as keys and corresponding values
     '''
-    commentsValue = PLRDict.pop("Comments")
-    commentsList = commentsValue.split("\n")
-    commentsList[0] = commentsList[0][9:]       # removes "General: " from first element
-    for commentVal in commentsList:
-        pair = commentVal.split(":")
-        for element in pair:
-            element = element.strip()
-        PLRDict[pair[0]] = pair[1]
+    PatientInfoList = []
 
-    PDFDict = {}
-    PDFDict["Last Name"] = PLRDict["LastName"]
-    PDFDict["First Name"] = PLRDict["FirstName"]
-    PDFDict["Date of Birth"] = PLRDict["Birthday"]
-    PDFDict["PHN"] = PLRDict["PHN"]
-    PDFDict["Address"] = PLRDict["Address1"]
-    PDFDict["City Town"] = PLRDict["City"]
-    PDFDict["Province"] = PLRDict["Province"]
-    PDFDict["Postal Code"] = PLRDict["Postal"]
-    PDFDict["Phone"] = extractPhoneNumber(PLRDict["PhoneNumbers"])
-    PDFDict["Program"] = PLRDict["Program"]
-    PDFDict["Student ID"] = PLRDict["StudentNumber"]
-    PDFDict["Male"] = isMale(PLRDict["Sex"])
-    PDFDict["Female"] = isFemale(PLRDict["Sex"])
+    for PLRDict in PLRList:
+        commentsValue = PLRDict.pop("Comments")
+        commentsList = commentsValue.split("\n")
+        commentsList[0] = commentsList[0][9:]       # removes "General: " from first element
+        for commentVal in commentsList:
+            pair = commentVal.split(":")
+            for element in pair:
+                element = element.strip()
+            PLRDict[pair[0]] = pair[1]
 
-    return PDFDict
+        PDFDict = {}
+        PDFDict["Last Name"] = PLRDict["LastName"]
+        PDFDict["First Name"] = PLRDict["FirstName"]
+        PDFDict["Date of Birth"] = PLRDict["Birthday"]
+        PDFDict["PHN"] = PLRDict["PHN"]
+        PDFDict["Address"] = PLRDict["Address1"]
+        PDFDict["City Town"] = PLRDict["City"]
+        PDFDict["Province"] = PLRDict["Province"]
+        PDFDict["Postal Code"] = PLRDict["Postal"]
+        PDFDict["Phone"] = extractPhoneNumber(PLRDict["PhoneNumbers"])
+        PDFDict["Program"] = PLRDict["Program"]
+        PDFDict["Student ID"] = PLRDict["StudentNumber"]
+        PDFDict["Male"] = isMale(PLRDict["Sex"])
+        PDFDict["Female"] = isFemale(PLRDict["Sex"])
+
+        PatientInfoList.append(PDFDict)
+
+    return PatientInfoList
 
 def writeToPDF(reader, PDFDict, patientName):
     path = PDFEXPORTPATH + '\\' + patientName + '.pdf'
@@ -110,8 +111,9 @@ def writeToPDF(reader, PDFDict, patientName):
 
 def main():
     log = open('CSVtoPDFLog.txt', 'w')
+    PDFDict = formatPLR(openFile(CSVPATH))
     try:
-        PDFDict = formatPLR(openFile(CSVPATH))
+        pass
     except Exception as e:
         print(f"Error reading CSV: {e}")
         log.write(f"Error reading CSV: {e}")
