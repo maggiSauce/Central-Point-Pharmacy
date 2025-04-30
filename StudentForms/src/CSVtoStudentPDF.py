@@ -3,7 +3,7 @@ from pypdf import PdfReader, PdfWriter
 from pypdf.generic import NameObject, BooleanObject
 
 PDFTEMPLATEPATH = r"C:\Users\small\Central-Point-Pharmacy\StudentForms\Norquest.pdf"
-PDFEXPORTPATH = r"C:\Users\small\Central-Point-Pharmacy\StudentForms\TempExport\Tester.pdf"
+PDFEXPORTPATH = r"C:\Users\small\Central-Point-Pharmacy\StudentForms\TempExport"
 CSVPATH = r"C:\Users\small\Central-Point-Pharmacy\StudentForms\Patient listing report - Copy.csv"
 
 
@@ -12,6 +12,8 @@ def openFile(filepath:str) -> dict:
     opens and formats a file
     returns a list of each line in the file
     '''
+
+    rowsList = []
     
     with open(filepath, newline='', encoding='utf-8') as csvfile:
         reader = csv.DictReader(csvfile)
@@ -23,7 +25,8 @@ def openFile(filepath:str) -> dict:
         filledFieldsDict = {
             key: value for key, value in first_row.items() if value and value.strip()
         }
-    return filledFieldsDict
+        rowsList.append(filledFieldsDict)
+    return rowsList
 
 def extractPhoneNumber(numberString):
     """
@@ -86,6 +89,24 @@ def formatPLR(PLRDict: dict) -> dict:
 
     return PDFDict
 
+def writeToPDF(reader, PDFDict, patientName):
+    path = PDFEXPORTPATH + '\\' + patientName + '.pdf'
+
+    writer = PdfWriter()
+    writer.append(reader)
+
+    writer.update_page_form_field_values(
+        writer.pages[0], 
+        PDFDict,
+        auto_regenerate = False
+    )
+
+    # Copy over AcroForm and set NeedAppearances = True
+    writer._root_object.update({NameObject("/AcroForm"): reader.trailer["/Root"]["/AcroForm"]}) 
+    writer._root_object["/AcroForm"].update({NameObject("/NeedAppearances"): BooleanObject(True)})
+
+    with open(path, "wb") as outputStream:     # 'wb' is for write binary mode
+        writer.write(outputStream)
 
 def main():
     log = open('CSVtoPDFLog.txt', 'w')
@@ -101,20 +122,9 @@ def main():
         print(f"Error reading PDF output template: {e}")
         log.write(f"Error reading PDF output template: {e}")
         exit(102)
-    
-    writer = PdfWriter()
-    writer.append(reader)
 
-    writer.update_page_form_field_values(
-        writer.pages[0], 
-        PDFDict,
-        auto_regenerate = False
-    )
-
-    # Copy over AcroForm and set NeedAppearances = True
-    writer._root_object.update({NameObject("/AcroForm"): reader.trailer["/Root"]["/AcroForm"]}) 
-    writer._root_object["/AcroForm"].update({NameObject("/NeedAppearances"): BooleanObject(True)})
-
-    with open(PDFEXPORTPATH, "wb") as outputStream:     # 'wb' is for write binary mode
-        writer.write(outputStream)
+    print(PDFDict)
+    # patientName = f'{PDFDict["First Name"]}{PDFDict["Last Name"]}'
+    # writeToPDF(reader, PDFDict, patientName)
+    # log.close()
 main()
