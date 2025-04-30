@@ -134,6 +134,7 @@ def main():
         else:
             log.write(f"{PDFInfoList[i]['First Name']} {PDFInfoList[i]['Last Name']} does not attend a listed school")
             print(f"{PDFInfoList[i]['First Name']} {PDFInfoList[i]['Last Name']} does not attend a listed school")
+            continue
 
         try:
             reader = PdfReader(templatePath)
