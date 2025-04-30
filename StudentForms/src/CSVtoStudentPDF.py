@@ -1,4 +1,6 @@
 import csv
+import sys
+import traceback
 from pypdf import PdfReader, PdfWriter
 from pypdf.generic import NameObject, BooleanObject
 import tkinter as tk
@@ -79,23 +81,28 @@ def formatPLR(PLRList: list) -> list:
             pair = commentVal.split(":")
             for element in pair:
                 element = element.strip()
+            if len(pair) < 2:
+                continue
             PLRDict[pair[0]] = pair[1]
 
-        PDFDict = {}
-        PDFDict["Last Name"] = PLRDict["LastName"]
-        PDFDict["First Name"] = PLRDict["FirstName"]
-        PDFDict["Date of Birth"] = PLRDict["Birthday"]
-        PDFDict["PHN"] = PLRDict["PHN"]
-        PDFDict["Address"] = PLRDict["Address1"]
-        PDFDict["City Town"] = PLRDict["City"]
-        PDFDict["Province"] = PLRDict["Province"]
-        PDFDict["Postal Code"] = PLRDict["Postal"]
-        PDFDict["Phone"] = extractPhoneNumber(PLRDict["PhoneNumbers"])
-        PDFDict["Program"] = PLRDict["Program"]
-        PDFDict["Student ID"] = PLRDict["StudentNumber"]
-        PDFDict["Male"] = isMale(PLRDict["Sex"])
-        PDFDict["Female"] = isFemale(PLRDict["Sex"])
-        PDFDict["School"] = PLRDict["School"].strip()
+        try:
+            PDFDict = {}
+            PDFDict["Last Name"] = PLRDict["LastName"]
+            PDFDict["First Name"] = PLRDict["FirstName"]
+            PDFDict["Date of Birth"] = PLRDict["Birthday"]
+            PDFDict["PHN"] = PLRDict["PHN"]
+            PDFDict["Address"] = PLRDict["Address1"]
+            PDFDict["City Town"] = PLRDict["City"]
+            PDFDict["Province"] = PLRDict["Province"]
+            PDFDict["Postal Code"] = PLRDict["Postal"]
+            PDFDict["Phone"] = extractPhoneNumber(PLRDict["PhoneNumbers"])
+            PDFDict["Program"] = PLRDict["Program"]
+            PDFDict["Student ID"] = PLRDict["StudentNumber"]
+            PDFDict["Male"] = isMale(PLRDict["Sex"])
+            PDFDict["Female"] = isFemale(PLRDict["Sex"])
+            PDFDict["School"] = PLRDict["School"].strip()
+        except:
+            continue
 
         if PDFDict["School"] == '':
             continue
@@ -131,10 +138,18 @@ def main():
     chosenCSVPath = askopenfilename()
     try:
         PDFInfoList = formatPLR(openFile(chosenCSVPath))
+    except KeyError as e:
+        log.write(f"Error Reading CSV: {e}, this key is not in the CSV file\n")
+        log.write(traceback.format_exc())
+        tk.messagebox.showinfo("CSV Converter Error", "There was an error converting your CSV. \nPlease read CSVtoPDFLog")
+        sys.exit(101)
     except Exception as e:
         print(f"Error reading CSV: {e}")
-        log.write(f"Error reading CSV: {e}")
-        exit(101)
+        log.write(f"Error reading CSV: {e}\n")
+        log.write(traceback.format_exc())
+        tk.messagebox.showinfo("CSV Converter Error", "There was an error converting your CSV. \nPlease read CSVtoPDFLog")
+
+        sys.exit(101)
     # print(PDFInfoList)
     
     for i in range(len(PDFInfoList)):
@@ -149,10 +164,13 @@ def main():
             reader = PdfReader(templatePath)
         except Exception as e:
             print(f"Error reading PDF output template: {e}")
-            log.write(f"Error reading PDF output template: {e}")
-            exit(102)
+            log.write(f"Error reading PDF output template: {e}\n")
+            log.write(traceback.format_exc())
+            tk.messagebox.showinfo("CSV Converter Error", "There was an error converting your CSV. \nPlease read CSVtoPDFLog")
+            sys.exit(102)
 
         patientName = f'{PDFInfoList[i]["First Name"]}{PDFInfoList[i]["Last Name"]}'
         writeToPDF(reader, PDFInfoList[i], patientName)
     log.close()
+    tk.messagebox.showinfo("CSV Converter Completed", "Successfully created all eligible pdfs")
 main()
