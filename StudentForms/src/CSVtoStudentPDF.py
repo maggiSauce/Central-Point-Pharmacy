@@ -52,14 +52,24 @@ def formatPLR(PLRDict: dict) -> dict:
 
     return PDFDict
 
-def fillPDF():
-    pass
-
-
 def main():
     PDFDict = formatPLR(openFile(r"C:\Users\small\Central-Point-Pharmacy\StudentForms\Patient listing report.csv"))
     print(PDFDict)
 
-    reader = PdfReader(PDFTEMPLATEPATH)  # Replace with your actual file
-    writer = PdfWriter(PDFEXPORTPATH)
+    reader = PdfReader(PDFTEMPLATEPATH)
+    writer = PdfWriter()
+
+    page = reader.pages[0]
+    fields = reader.get_fields()
+
+    writer.append(reader)
+
+    writer.update_page_form_field_values(
+        writer.pages[0], 
+        PDFDict,
+        auto_regenerate = False
+    )
+
+    with open(PDFEXPORTPATH, "wb") as outputStream:     # 'wb' is for write binary mode
+        writer.write(outputStream)
 main()
