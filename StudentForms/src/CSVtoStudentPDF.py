@@ -4,9 +4,12 @@ from pypdf.generic import NameObject, BooleanObject
 import tkinter as tk
 from tkinter.filedialog import askopenfilename
 
-PDFTEMPLATEPATH = r"C:\Users\small\Central-Point-Pharmacy\StudentForms"
-PDFEXPORTPATH = r"C:\Users\small\Central-Point-Pharmacy\StudentForms\TempExport"
-CSVPATH = r"C:\Users\small\Central-Point-Pharmacy\StudentForms\Patient listing report - Copy.csv"
+# PDFTEMPLATEPATH = r"C:\Users\small\Central-Point-Pharmacy\StudentForms"
+# PDFEXPORTPATH = r"C:\Users\small\Central-Point-Pharmacy\StudentForms\TempExport"
+# CSVPATH = r"C:\Users\small\Central-Point-Pharmacy\StudentForms\Patient listing report - Copy.csv"
+
+PDFTEMPLATEPATH = r"C:\Users\kroll\Desktop\School Forms\Templates"
+PDFEXPORTPATH = r"C:\Users\kroll\Desktop\School Forms"
 
 SCHOOLSLIST = ["CDI",
                "Norquest",
