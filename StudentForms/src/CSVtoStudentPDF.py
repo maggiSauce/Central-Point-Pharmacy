@@ -2,10 +2,15 @@ import csv
 from pypdf import PdfReader, PdfWriter
 from pypdf.generic import NameObject, BooleanObject
 
-PDFTEMPLATEPATH = r"C:\Users\small\Central-Point-Pharmacy\StudentForms\Norquest.pdf"
+PDFTEMPLATEPATH = r"C:\Users\small\Central-Point-Pharmacy\StudentForms"
 PDFEXPORTPATH = r"C:\Users\small\Central-Point-Pharmacy\StudentForms\TempExport"
 CSVPATH = r"C:\Users\small\Central-Point-Pharmacy\StudentForms\Patient listing report - Copy.csv"
 
+SCHOOLSLIST = ["CDI",
+               "Norquest",
+               "MacEwan",
+               "UofA",
+               "NAIT"]
 
 def openFile(filepath:str) -> list:
     '''
@@ -85,6 +90,10 @@ def formatPLR(PLRList: list) -> list:
         PDFDict["Student ID"] = PLRDict["StudentNumber"]
         PDFDict["Male"] = isMale(PLRDict["Sex"])
         PDFDict["Female"] = isFemale(PLRDict["Sex"])
+        PDFDict["School"] = PLRDict["School"].strip()
+
+        if PDFDict["School"] == '':
+            continue
 
         PatientInfoList.append(PDFDict)
 
@@ -117,15 +126,22 @@ def main():
         print(f"Error reading CSV: {e}")
         log.write(f"Error reading CSV: {e}")
         exit(101)
-    try:
-        reader = PdfReader(PDFTEMPLATEPATH)
-    except Exception as e:
-        print(f"Error reading PDF output template: {e}")
-        log.write(f"Error reading PDF output template: {e}")
-        exit(102)
-
     # print(PDFInfoList)
+    
     for i in range(len(PDFInfoList)):
+        if PDFInfoList[i]['School'] in SCHOOLSLIST:
+            templatePath = PDFTEMPLATEPATH + '\\' + PDFInfoList[i]['School'] + '.pdf'
+        else:
+            log.write(f"{PDFInfoList[i]['First Name']} {PDFInfoList[i]['Last Name']} does not attend a listed school")
+            print(f"{PDFInfoList[i]['First Name']} {PDFInfoList[i]['Last Name']} does not attend a listed school")
+
+        try:
+            reader = PdfReader(templatePath)
+        except Exception as e:
+            print(f"Error reading PDF output template: {e}")
+            log.write(f"Error reading PDF output template: {e}")
+            exit(102)
+
         patientName = f'{PDFInfoList[i]["First Name"]}{PDFInfoList[i]["Last Name"]}'
         writeToPDF(reader, PDFInfoList[i], patientName)
     log.close()
