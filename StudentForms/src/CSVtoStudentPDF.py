@@ -1,5 +1,6 @@
 import csv
 import sys
+import traceback
 from pypdf import PdfReader, PdfWriter
 from pypdf.generic import NameObject, BooleanObject
 import tkinter as tk
@@ -135,6 +136,7 @@ def main():
     except Exception as e:
         print(f"Error reading CSV: {e}")
         log.write(f"Error reading CSV: {e}")
+        log.write(traceback.print_exc())
         sys.exit(101)
     # print(PDFInfoList)
     
@@ -151,6 +153,7 @@ def main():
         except Exception as e:
             print(f"Error reading PDF output template: {e}")
             log.write(f"Error reading PDF output template: {e}")
+            log.write(traceback.print_exc())
             sys.exit(102)
 
         patientName = f'{PDFInfoList[i]["First Name"]}{PDFInfoList[i]["Last Name"]}'
