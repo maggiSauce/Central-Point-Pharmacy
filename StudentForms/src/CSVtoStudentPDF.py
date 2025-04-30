@@ -141,11 +141,14 @@ def main():
     except KeyError as e:
         log.write(f"Error Reading CSV: {e}, this key is not in the CSV file\n")
         log.write(traceback.format_exc())
+        tk.messagebox.showinfo("CSV Converter Error", "There was an error converting your CSV. \nPlease read CSVtoPDFLog")
         sys.exit(101)
     except Exception as e:
         print(f"Error reading CSV: {e}")
         log.write(f"Error reading CSV: {e}\n")
         log.write(traceback.format_exc())
+        tk.messagebox.showinfo("CSV Converter Error", "There was an error converting your CSV. \nPlease read CSVtoPDFLog")
+
         sys.exit(101)
     # print(PDFInfoList)
     
@@ -163,9 +166,11 @@ def main():
             print(f"Error reading PDF output template: {e}")
             log.write(f"Error reading PDF output template: {e}\n")
             log.write(traceback.format_exc())
+            tk.messagebox.showinfo("CSV Converter Error", "There was an error converting your CSV. \nPlease read CSVtoPDFLog")
             sys.exit(102)
 
         patientName = f'{PDFInfoList[i]["First Name"]}{PDFInfoList[i]["Last Name"]}'
         writeToPDF(reader, PDFInfoList[i], patientName)
     log.close()
+    tk.messagebox.showinfo("CSV Converter Completed", "Successfully created all eligible pdfs")
 main()
