@@ -1,6 +1,8 @@
 import csv
 from pypdf import PdfReader, PdfWriter
 from pypdf.generic import NameObject, BooleanObject
+import tkinter as tk
+from tkinter.filedialog import askopenfilename
 
 PDFTEMPLATEPATH = r"C:\Users\small\Central-Point-Pharmacy\StudentForms"
 PDFEXPORTPATH = r"C:\Users\small\Central-Point-Pharmacy\StudentForms\TempExport"
@@ -120,8 +122,12 @@ def writeToPDF(reader, PDFDict, patientName):
 
 def main():
     log = open('CSVtoPDFLog.txt', 'w')
+
+    tk.Tk().withdraw() # part of the import if you are not using other tkinter functions
+
+    chosenCSVPath = askopenfilename()
     try:
-        PDFInfoList = formatPLR(openFile(CSVPATH))
+        PDFInfoList = formatPLR(openFile(chosenCSVPath))
     except Exception as e:
         print(f"Error reading CSV: {e}")
         log.write(f"Error reading CSV: {e}")
