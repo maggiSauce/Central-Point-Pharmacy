@@ -4,7 +4,7 @@ from pypdf.generic import NameObject, BooleanObject
 
 PDFTEMPLATEPATH = r"C:\Users\small\Central-Point-Pharmacy\StudentForms\Norquest.pdf"
 PDFEXPORTPATH = r"C:\Users\small\Central-Point-Pharmacy\StudentForms\TempExport\Tester.pdf"
-CSVPATH = r"C:\Users\small\Central-Point-Pharmacy\StudentForms\Patient listing report.csv"
+CSVPATH = r"C:\Users\small\Central-Point-Pharmacy\StudentForms\Patient listing report - Copy.csv"
 
 
 def openFile(filepath:str) -> dict:
@@ -88,15 +88,21 @@ def formatPLR(PLRDict: dict) -> dict:
 
 
 def main():
-    PDFDict = formatPLR(openFile(CSVPATH))
-    print(PDFDict)
-
-    reader = PdfReader(PDFTEMPLATEPATH)
+    log = open('CSVtoPDFLog.txt', 'w')
+    try:
+        PDFDict = formatPLR(openFile(CSVPATH))
+    except Exception as e:
+        print(f"Error reading CSV: {e}")
+        log.write(f"Error reading CSV: {e}")
+        exit(101)
+    try:
+        reader = PdfReader(PDFTEMPLATEPATH)
+    except Exception as e:
+        print(f"Error reading PDF output template: {e}")
+        log.write(f"Error reading PDF output template: {e}")
+        exit(102)
+    
     writer = PdfWriter()
-
-    page = reader.pages[0]
-    fields = reader.get_fields()
-
     writer.append(reader)
 
     writer.update_page_form_field_values(
@@ -111,6 +117,4 @@ def main():
 
     with open(PDFEXPORTPATH, "wb") as outputStream:     # 'wb' is for write binary mode
         writer.write(outputStream)
-
-    print("done")
 main()
