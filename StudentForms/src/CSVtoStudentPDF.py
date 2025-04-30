@@ -7,10 +7,10 @@ PDFEXPORTPATH = r"C:\Users\small\Central-Point-Pharmacy\StudentForms\TempExport"
 CSVPATH = r"C:\Users\small\Central-Point-Pharmacy\StudentForms\Patient listing report - Copy.csv"
 
 
-def openFile(filepath:str) -> dict:
+def openFile(filepath:str) -> list:
     '''
     opens and formats a file
-    returns a list of each line in the file
+    returns a list of dicts for each row in the file
     '''
 
     rowsList = []
@@ -57,7 +57,7 @@ def isFemale(genderString):
 def formatPLR(PLRList: list) -> list:
     '''
     Formats the Patient Listing Report dictionary
-    Returns PDFDict which is a dict that holds pdf fields as keys and corresponding values
+    Returns PatientInfoList which is a list of dicts that hold pdf fields as keys and corresponding values
     '''
     PatientInfoList = []
 
@@ -111,9 +111,8 @@ def writeToPDF(reader, PDFDict, patientName):
 
 def main():
     log = open('CSVtoPDFLog.txt', 'w')
-    PDFDict = formatPLR(openFile(CSVPATH))
     try:
-        pass
+        PDFInfoList = formatPLR(openFile(CSVPATH))
     except Exception as e:
         print(f"Error reading CSV: {e}")
         log.write(f"Error reading CSV: {e}")
@@ -125,8 +124,9 @@ def main():
         log.write(f"Error reading PDF output template: {e}")
         exit(102)
 
-    print(PDFDict)
-    # patientName = f'{PDFDict["First Name"]}{PDFDict["Last Name"]}'
-    # writeToPDF(reader, PDFDict, patientName)
-    # log.close()
+    # print(PDFInfoList)
+    for i in range(len(PDFInfoList)):
+        patientName = f'{PDFInfoList[i]["First Name"]}{PDFInfoList[i]["Last Name"]}'
+        writeToPDF(reader, PDFInfoList[i], patientName)
+    log.close()
 main()
