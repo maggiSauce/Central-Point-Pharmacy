@@ -85,21 +85,24 @@ def formatPLR(PLRList: list) -> list:
                 continue
             PLRDict[pair[0]] = pair[1]
 
-        PDFDict = {}
-        PDFDict["Last Name"] = PLRDict["LastName"]
-        PDFDict["First Name"] = PLRDict["FirstName"]
-        PDFDict["Date of Birth"] = PLRDict["Birthday"]
-        PDFDict["PHN"] = PLRDict["PHN"]
-        PDFDict["Address"] = PLRDict["Address1"]
-        PDFDict["City Town"] = PLRDict["City"]
-        PDFDict["Province"] = PLRDict["Province"]
-        PDFDict["Postal Code"] = PLRDict["Postal"]
-        PDFDict["Phone"] = extractPhoneNumber(PLRDict["PhoneNumbers"])
-        PDFDict["Program"] = PLRDict["Program"]
-        PDFDict["Student ID"] = PLRDict["StudentNumber"]
-        PDFDict["Male"] = isMale(PLRDict["Sex"])
-        PDFDict["Female"] = isFemale(PLRDict["Sex"])
-        PDFDict["School"] = PLRDict["School"].strip()
+        try:
+            PDFDict = {}
+            PDFDict["Last Name"] = PLRDict["LastName"]
+            PDFDict["First Name"] = PLRDict["FirstName"]
+            PDFDict["Date of Birth"] = PLRDict["Birthday"]
+            PDFDict["PHN"] = PLRDict["PHN"]
+            PDFDict["Address"] = PLRDict["Address1"]
+            PDFDict["City Town"] = PLRDict["City"]
+            PDFDict["Province"] = PLRDict["Province"]
+            PDFDict["Postal Code"] = PLRDict["Postal"]
+            PDFDict["Phone"] = extractPhoneNumber(PLRDict["PhoneNumbers"])
+            PDFDict["Program"] = PLRDict["Program"]
+            PDFDict["Student ID"] = PLRDict["StudentNumber"]
+            PDFDict["Male"] = isMale(PLRDict["Sex"])
+            PDFDict["Female"] = isFemale(PLRDict["Sex"])
+            PDFDict["School"] = PLRDict["School"].strip()
+        except:
+            continue
 
         if PDFDict["School"] == '':
             continue
