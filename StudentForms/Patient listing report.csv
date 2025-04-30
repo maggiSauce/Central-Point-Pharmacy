@@ -1,0 +1,5 @@
+Pharmacy #,PatientName,Address1,Address2,City,Province,Postal,Allergies,Birthday,Age,Sex,Email,Comments,Conditions,FamilyMembers,Groups,NursingHome,FamilyDoctor,PhoneNumbers,Plans,TotalRxs,TotalDollars,QuickCode,PriceGroup,LastUsed,FirstName,LastName,AR Account,Language,Height,Weight,Deceased Date,Network,Care Giver,Caregiver Relationship,Invitation Generated Date,PharmacyLink Established Date,PharmacyLink Registration Status
+,"doe, john","example St, Nw",,Edmonton,AB,T5X 1A1,,1985-05-15,,F,,"General: School: Norquest 
+Program: Practical Nurse
+StudentNumber: 9999999
+PHN: 1111111111",,,,,,Home: (780) 555-5555,,,,,,,John,Doe,,,,,,,,,,,
