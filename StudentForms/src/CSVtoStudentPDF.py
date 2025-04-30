@@ -1,8 +1,10 @@
 import csv
 from pypdf import PdfReader, PdfWriter
+from pypdf.generic import NameObject, BooleanObject
 
 PDFTEMPLATEPATH = r"C:\Users\small\Central-Point-Pharmacy\StudentForms\Norquest.pdf"
 PDFEXPORTPATH = r"C:\Users\small\Central-Point-Pharmacy\StudentForms\TempExport\Tester.pdf"
+CSVPATH = r"C:\Users\small\Central-Point-Pharmacy\StudentForms\Patient listing report.csv"
 
 
 def openFile(filepath:str) -> dict:
@@ -86,7 +88,7 @@ def formatPLR(PLRDict: dict) -> dict:
 
 
 def main():
-    PDFDict = formatPLR(openFile(r"C:\Users\small\Central-Point-Pharmacy\StudentForms\Patient listing report - Copy.csv"))
+    PDFDict = formatPLR(openFile(CSVPATH))
     print(PDFDict)
 
     reader = PdfReader(PDFTEMPLATEPATH)
@@ -102,6 +104,10 @@ def main():
         PDFDict,
         auto_regenerate = False
     )
+
+    # Copy over AcroForm and set NeedAppearances = True
+    writer._root_object.update({NameObject("/AcroForm"): reader.trailer["/Root"]["/AcroForm"]}) 
+    writer._root_object["/AcroForm"].update({NameObject("/NeedAppearances"): BooleanObject(True)})
 
     with open(PDFEXPORTPATH, "wb") as outputStream:     # 'wb' is for write binary mode
         writer.write(outputStream)
