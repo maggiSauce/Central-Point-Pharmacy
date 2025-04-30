@@ -4,6 +4,7 @@ from pypdf import PdfReader, PdfWriter
 PDFTEMPLATEPATH = r"C:\Users\small\Central-Point-Pharmacy\StudentForms\Norquest.pdf"
 PDFEXPORTPATH = r"C:\Users\small\Central-Point-Pharmacy\StudentForms\TempExport\Tester.pdf"
 
+
 def openFile(filepath:str) -> dict:
     '''
     opens and formats a file
@@ -40,7 +41,7 @@ def formatPLR(PLRDict: dict) -> dict:
     PDFDict["Last Name"] = PLRDict["LastName"]
     PDFDict["First Name"] = PLRDict["FirstName"]
     PDFDict["Date of Birth"] = PLRDict["Birthday"]
-    PDFDict["Gender"] = PLRDict["Sex"]
+    # PDFDict["Gender"] = PLRDict["Sex"]
     PDFDict["PHN"] = PLRDict["PHN"]
     PDFDict["Address"] = PLRDict["Address1"]
     PDFDict["City Town"] = PLRDict["City"]
@@ -50,10 +51,20 @@ def formatPLR(PLRDict: dict) -> dict:
     PDFDict["Program"] = PLRDict["Program"]
     PDFDict["Student ID"] = PLRDict["StudentNumber"]
 
+    if PLRDict["Sex"] == "F":
+        PDFDict["Female"] = "/On"
+    elif PLRDict["Sex"] == "M":
+        PDFDict["Male"] = "/On"
+    else:
+        print("No gender")
+        print(PLRDict["Sex"])
+        exit(101)
+
     return PDFDict
 
+
 def main():
-    PDFDict = formatPLR(openFile(r"C:\Users\small\Central-Point-Pharmacy\StudentForms\Patient listing report.csv"))
+    PDFDict = formatPLR(openFile(r"C:\Users\small\Central-Point-Pharmacy\StudentForms\Patient listing report - Copy.csv"))
     print(PDFDict)
 
     reader = PdfReader(PDFTEMPLATEPATH)
@@ -61,6 +72,8 @@ def main():
 
     page = reader.pages[0]
     fields = reader.get_fields()
+    # for fieldName, fieldData in fields.items():
+    #     print(f"{fieldName}: {fieldData.get('/V')}")
 
     writer.append(reader)
 
@@ -72,4 +85,6 @@ def main():
 
     with open(PDFEXPORTPATH, "wb") as outputStream:     # 'wb' is for write binary mode
         writer.write(outputStream)
+
+    print("done")
 main()
