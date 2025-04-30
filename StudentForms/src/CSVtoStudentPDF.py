@@ -23,6 +23,36 @@ def openFile(filepath:str) -> dict:
         }
     return filledFieldsDict
 
+def extractPhoneNumber(numberString):
+    """
+    Extracts the first available phone number and returns it. 
+    If no number is found, returns false
+    """
+
+    phoneNumber = ''
+    activeNumber = False
+
+    for char in numberString:
+        if char.isdigit() or char in '()- ':
+            phoneNumber += char
+            activeNumber = True
+        elif activeNumber:
+            break
+    if phoneNumber:
+        return phoneNumber
+    else:
+        return None
+    
+def isMale(genderString):
+    if genderString == "M":
+        return "/On"
+    return '/Off'
+
+def isFemale(genderString):
+    if genderString == "F":
+        return "/On"
+    return '/Off'
+    
 def formatPLR(PLRDict: dict) -> dict:
     '''
     Formats the Patient Listing Report dictionary
@@ -41,24 +71,16 @@ def formatPLR(PLRDict: dict) -> dict:
     PDFDict["Last Name"] = PLRDict["LastName"]
     PDFDict["First Name"] = PLRDict["FirstName"]
     PDFDict["Date of Birth"] = PLRDict["Birthday"]
-    # PDFDict["Gender"] = PLRDict["Sex"]
     PDFDict["PHN"] = PLRDict["PHN"]
     PDFDict["Address"] = PLRDict["Address1"]
     PDFDict["City Town"] = PLRDict["City"]
     PDFDict["Province"] = PLRDict["Province"]
     PDFDict["Postal Code"] = PLRDict["Postal"]
-    PDFDict["Phone"] = PLRDict["PhoneNumbers"]
+    PDFDict["Phone"] = extractPhoneNumber(PLRDict["PhoneNumbers"])
     PDFDict["Program"] = PLRDict["Program"]
     PDFDict["Student ID"] = PLRDict["StudentNumber"]
-
-    if PLRDict["Sex"] == "F":
-        PDFDict["Female"] = "/On"
-    elif PLRDict["Sex"] == "M":
-        PDFDict["Male"] = "/On"
-    else:
-        print("No gender")
-        print(PLRDict["Sex"])
-        exit(101)
+    PDFDict["Male"] = isMale(PLRDict["Sex"])
+    PDFDict["Female"] = isFemale(PLRDict["Sex"])
 
     return PDFDict
 
@@ -72,8 +94,6 @@ def main():
 
     page = reader.pages[0]
     fields = reader.get_fields()
-    # for fieldName, fieldData in fields.items():
-    #     print(f"{fieldName}: {fieldData.get('/V')}")
 
     writer.append(reader)
 
