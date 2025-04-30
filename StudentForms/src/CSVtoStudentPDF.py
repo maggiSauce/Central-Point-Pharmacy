@@ -9,7 +9,7 @@ from tkinter.filedialog import askopenfilename
 # CSVPATH = r"C:\Users\small\Central-Point-Pharmacy\StudentForms\Patient listing report - Copy.csv"
 
 PDFTEMPLATEPATH = r"C:\Users\kroll\Desktop\School Forms\Templates"
-PDFEXPORTPATH = r"C:\Users\kroll\Desktop\School Forms"
+PDFEXPORTPATH = r"C:\Users\kroll\Desktop\School Forms\Output"
 
 SCHOOLSLIST = ["CDI",
                "Norquest",
