@@ -6,12 +6,12 @@ from pypdf.generic import NameObject, BooleanObject
 import tkinter as tk
 from tkinter.filedialog import askopenfilename
 
-# PDFTEMPLATEPATH = r"C:\Users\small\Central-Point-Pharmacy\StudentForms"
-# PDFEXPORTPATH = r"C:\Users\small\Central-Point-Pharmacy\StudentForms\TempExport"
+PDFTEMPLATEPATH = r"C:\Users\small\Central-Point-Pharmacy\StudentForms\Templates"
+PDFEXPORTPATH = r"C:\Users\small\Central-Point-Pharmacy\StudentForms\TempExport"
 # CSVPATH = r"C:\Users\small\Central-Point-Pharmacy\StudentForms\Patient listing report - Copy.csv"
 
-PDFTEMPLATEPATH = r"C:\Users\kroll\Desktop\School Forms\Templates"
-PDFEXPORTPATH = r"C:\Users\kroll\Desktop\School Forms\Output"
+# PDFTEMPLATEPATH = r"C:\Users\kroll\Desktop\School Forms\Templates"
+# PDFEXPORTPATH = r"C:\Users\kroll\Desktop\School Forms\Output"
 
 SCHOOLSLIST = ["CDI",
                "Norquest",
@@ -162,15 +162,15 @@ def main():
 
         try:
             reader = PdfReader(templatePath)
+            patientName = f'{PDFInfoList[i]["First Name"]}{PDFInfoList[i]["Last Name"]}'
+            writeToPDF(reader, PDFInfoList[i], patientName)
         except Exception as e:
-            print(f"Error reading PDF output template: {e}")
-            log.write(f"Error reading PDF output template: {e}\n")
+            log.write(f"Error reading PDF template or writing to patient PDF: {e}\n")
             log.write(traceback.format_exc())
             tk.messagebox.showinfo("CSV Converter Error", "There was an error converting your CSV. \nPlease read CSVtoPDFLog")
             sys.exit(102)
 
-        patientName = f'{PDFInfoList[i]["First Name"]}{PDFInfoList[i]["Last Name"]}'
-        writeToPDF(reader, PDFInfoList[i], patientName)
+    log.write("Exit code 0")
     log.close()
     tk.messagebox.showinfo("CSV Converter Completed", "Successfully created all eligible pdfs")
 main()
