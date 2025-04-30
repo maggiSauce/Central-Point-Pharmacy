@@ -81,6 +81,8 @@ def formatPLR(PLRList: list) -> list:
             pair = commentVal.split(":")
             for element in pair:
                 element = element.strip()
+            if len(pair) < 2:
+                continue
             PLRDict[pair[0]] = pair[1]
 
         PDFDict = {}
